@@ -1,0 +1,796 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
+		AE04569D0F7C126500769B7D /* MacDVB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AE04569C0F7C126500769B7D /* MacDVB.cpp */; };
+		AE04577A0F7C175300769B7D /* MacDVB.h in Headers */ = {isa = PBXBuildFile; fileRef = AE04569B0F7C126500769B7D /* MacDVB.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AE0457A60F7C1A5800769B7D /* MacDVB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AE04569C0F7C126500769B7D /* MacDVB.cpp */; };
+		AE0BE6FB0F9BD031000F1FA4 /* IDVBEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = AE0BE6F90F9BD031000F1FA4 /* IDVBEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AE0BE6FC0F9BD031000F1FA4 /* IDVBEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AE0BE6FA0F9BD031000F1FA4 /* IDVBEvent.cpp */; };
+		AE1DBB9D0F923EDD0054F8DA /* CDVBLog.h in Headers */ = {isa = PBXBuildFile; fileRef = AE1DBB9B0F923EDD0054F8DA /* CDVBLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AE1DBB9E0F923EDD0054F8DA /* CDVBLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AE1DBB9C0F923EDD0054F8DA /* CDVBLog.cpp */; };
+		AE1DBE2D0F9366530054F8DA /* IDVBDemux.h in Headers */ = {isa = PBXBuildFile; fileRef = AE1DBE2B0F9366530054F8DA /* IDVBDemux.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AE1DBE2E0F9366530054F8DA /* IDVBDemux.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AE1DBE2C0F9366530054F8DA /* IDVBDemux.cpp */; };
+		AE1DBE360F9367920054F8DA /* CDVBUSBDemux.h in Headers */ = {isa = PBXBuildFile; fileRef = AE1DBE340F9367920054F8DA /* CDVBUSBDemux.h */; };
+		AE1DBE370F9367920054F8DA /* CDVBUSBDemux.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AE1DBE350F9367920054F8DA /* CDVBUSBDemux.cpp */; };
+		AE56A0980F951926005DA67B /* IDVBDmxDevFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = AE56A0960F951926005DA67B /* IDVBDmxDevFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AE56A0990F951926005DA67B /* IDVBDmxDevFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AE56A0970F951926005DA67B /* IDVBDmxDevFilter.cpp */; };
+		AE6F524E0F8E990B00804DB3 /* DIB7000P.h in Headers */ = {isa = PBXBuildFile; fileRef = AE6F524C0F8E990B00804DB3 /* DIB7000P.h */; };
+		AE6F524F0F8E990B00804DB3 /* DIB7000P.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AE6F524D0F8E990B00804DB3 /* DIB7000P.cpp */; };
+		AE6F538C0F8E9F2E00804DB3 /* DibX000.h in Headers */ = {isa = PBXBuildFile; fileRef = AE6F538A0F8E9F2E00804DB3 /* DibX000.h */; };
+		AE6F538D0F8E9F2E00804DB3 /* DibX000.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AE6F538B0F8E9F2E00804DB3 /* DibX000.cpp */; };
+		AE6F54F90F8EB91800804DB3 /* Dib0070.h in Headers */ = {isa = PBXBuildFile; fileRef = AE6F54F70F8EB91800804DB3 /* Dib0070.h */; };
+		AE6F54FA0F8EB91800804DB3 /* Dib0070.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AE6F54F80F8EB91800804DB3 /* Dib0070.cpp */; };
+		AE6F54FD0F8EB97E00804DB3 /* IDVBTuner.h in Headers */ = {isa = PBXBuildFile; fileRef = AE6F54FB0F8EB97E00804DB3 /* IDVBTuner.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AE6F54FE0F8EB97E00804DB3 /* IDVBTuner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AE6F54FC0F8EB97E00804DB3 /* IDVBTuner.cpp */; };
+		AE6F5C5B0F8FCA9E00804DB3 /* DVB.h in Headers */ = {isa = PBXBuildFile; fileRef = AE6F5C5A0F8FCA9E00804DB3 /* DVB.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AE6F5D6A0F8FE27900804DB3 /* IThread.h in Headers */ = {isa = PBXBuildFile; fileRef = AE6F5D680F8FE27900804DB3 /* IThread.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AE6F5D6B0F8FE27900804DB3 /* IThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AE6F5D690F8FE27900804DB3 /* IThread.cpp */; };
+		AE6F5F650F9027FC00804DB3 /* IEventQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = AE6F5F630F9027FC00804DB3 /* IEventQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AE6F635F0F90F6CC00804DB3 /* IFile.h in Headers */ = {isa = PBXBuildFile; fileRef = AE6F635D0F90F6CC00804DB3 /* IFile.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AE6F668B0F91574F00804DB3 /* IDVBFrontend.h in Headers */ = {isa = PBXBuildFile; fileRef = AE6F66890F91574F00804DB3 /* IDVBFrontend.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AE6F668C0F91574F00804DB3 /* IDVBFrontend.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AE6F668A0F91574F00804DB3 /* IDVBFrontend.cpp */; };
+		AE8FDEFB0F76ACF000088907 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE8FDEFA0F76ACF000088907 /* IOKit.framework */; };
+		AE8FDF220F76AD1700088907 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE8FDEFA0F76ACF000088907 /* IOKit.framework */; };
+		AEAD0BA70F93790900289A90 /* IDVBDmxPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = AEAD0BA60F93790900289A90 /* IDVBDmxPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AEAD0C500F9380D700289A90 /* IDVBDemuxSectionFeed.h in Headers */ = {isa = PBXBuildFile; fileRef = AEAD0C4E0F9380D700289A90 /* IDVBDemuxSectionFeed.h */; };
+		AEAD0C510F9380D700289A90 /* IDVBDemuxSectionFeed.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEAD0C4F0F9380D700289A90 /* IDVBDemuxSectionFeed.cpp */; };
+		AEAD0C6D0F9381CE00289A90 /* IDVBDemuxTSFeed.h in Headers */ = {isa = PBXBuildFile; fileRef = AEAD0C6B0F9381CE00289A90 /* IDVBDemuxTSFeed.h */; };
+		AEAD0C6E0F9381CE00289A90 /* IDVBDemuxTSFeed.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEAD0C6C0F9381CE00289A90 /* IDVBDemuxTSFeed.cpp */; };
+		AEAD0CBD0F93924400289A90 /* IDVBDVR.h in Headers */ = {isa = PBXBuildFile; fileRef = AEAD0CBB0F93924400289A90 /* IDVBDVR.h */; };
+		AEAD0CDE0F93A02E00289A90 /* CDVBRingBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = AEAD0CDC0F93A02E00289A90 /* CDVBRingBuffer.h */; };
+		AEAD0CDF0F93A02E00289A90 /* CDVBRingBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEAD0CDD0F93A02E00289A90 /* CDVBRingBuffer.cpp */; };
+		AEAD0FB50F93B11200289A90 /* IDVBDemuxFeed.h in Headers */ = {isa = PBXBuildFile; fileRef = AEAD0FB30F93B11200289A90 /* IDVBDemuxFeed.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		AEAD0FB60F93B11200289A90 /* IDVBDemuxFeed.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEAD0FB40F93B11200289A90 /* IDVBDemuxFeed.cpp */; };
+		AEB317140F8A4ED800922F4D /* DVBFirmware.h in Headers */ = {isa = PBXBuildFile; fileRef = AEB317120F8A4ED800922F4D /* DVBFirmware.h */; };
+		AEB317150F8A4ED800922F4D /* DVBFirmware.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEB317130F8A4ED800922F4D /* DVBFirmware.cpp */; };
+		AEB485F60F8A6BF200E144A4 /* IDVBI2CAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = AEB485F40F8A6BF200E144A4 /* IDVBI2CAdapter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AEB485F70F8A6BF200E144A4 /* IDVBI2CAdapter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEB485F50F8A6BF200E144A4 /* IDVBI2CAdapter.cpp */; };
+		AEB4865F0F8A7A5200E144A4 /* IDVBUSBAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = AEB4865D0F8A7A5200E144A4 /* IDVBUSBAdapter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AEB486600F8A7A5200E144A4 /* IDVBUSBAdapter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEB4865E0F8A7A5200E144A4 /* IDVBUSBAdapter.cpp */; };
+		AEB4897F0F8A8FED00E144A4 /* IDVBAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = AEB4897D0F8A8FED00E144A4 /* IDVBAdapter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AEB489800F8A8FED00E144A4 /* IDVBAdapter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEB4897E0F8A8FED00E144A4 /* IDVBAdapter.cpp */; };
+		AEB48B1B0F8AA8AC00E144A4 /* IDVBDemod.h in Headers */ = {isa = PBXBuildFile; fileRef = AEB48B190F8AA8AC00E144A4 /* IDVBDemod.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AEB48B1C0F8AA8AC00E144A4 /* IDVBDemod.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEB48B1A0F8AA8AC00E144A4 /* IDVBDemod.cpp */; };
+		AEB48B2A0F8AAEA700E144A4 /* IDVBI2CClient.h in Headers */ = {isa = PBXBuildFile; fileRef = AEB48B280F8AAEA700E144A4 /* IDVBI2CClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AEB48B2B0F8AAEA700E144A4 /* IDVBI2CClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEB48B290F8AAEA700E144A4 /* IDVBI2CClient.cpp */; };
+		AEC635C80F84040200C7295C /* DVBUSB.h in Headers */ = {isa = PBXBuildFile; fileRef = AEC635C60F84040200C7295C /* DVBUSB.h */; };
+		AEC635C90F84040200C7295C /* DVBUSB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC635C70F84040200C7295C /* DVBUSB.cpp */; };
+		AEC636840F84070A00C7295C /* Dibcom.h in Headers */ = {isa = PBXBuildFile; fileRef = AEC636820F84070A00C7295C /* Dibcom.h */; };
+		AEC636850F84070A00C7295C /* Dibcom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC636830F84070A00C7295C /* Dibcom.cpp */; };
+		AEC637A10F84193900C7295C /* IDVBUSBDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = AEC6379F0F84193900C7295C /* IDVBUSBDevice.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AEC637A20F84193900C7295C /* IDVBUSBDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC637A00F84193900C7295C /* IDVBUSBDevice.cpp */; };
+		AED7EB510F76964800FCCA2F /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED7EB500F76964800FCCA2F /* CoreFoundation.framework */; };
+		AED7EC420F769C0A00FCCA2F /* Video4Mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* Video4Mac.framework */; };
+		AED7EC670F769FC300FCCA2F /* dvbtune.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AED7EC600F769FAC00FCCA2F /* dvbtune.cpp */; };
+		AED7EC690F769FC300FCCA2F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AED7EC620F769FAC00FCCA2F /* main.cpp */; };
+		AED7EC7F0F76A43200FCCA2F /* printInterpretedError.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AED7EC7E0F76A43200FCCA2F /* printInterpretedError.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AEC633040F815FFD00C7295C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
+			remoteInfo = Video4Mac;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		089C1667FE841158C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		32DBCF5E0370ADEE00C91783 /* Video4Mac_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Video4Mac_Prefix.pch; sourceTree = "<group>"; };
+		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8DC2EF5B0486A6940098B216 /* Video4Mac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Video4Mac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE04569B0F7C126500769B7D /* MacDVB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacDVB.h; sourceTree = "<group>"; };
+		AE04569C0F7C126500769B7D /* MacDVB.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MacDVB.cpp; sourceTree = "<group>"; };
+		AE0BE6F90F9BD031000F1FA4 /* IDVBEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDVBEvent.h; sourceTree = "<group>"; };
+		AE0BE6FA0F9BD031000F1FA4 /* IDVBEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IDVBEvent.cpp; sourceTree = "<group>"; };
+		AE1DBB9B0F923EDD0054F8DA /* CDVBLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVBLog.h; path = ../USB/CDVBLog.h; sourceTree = "<group>"; };
+		AE1DBB9C0F923EDD0054F8DA /* CDVBLog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CDVBLog.cpp; path = ../USB/CDVBLog.cpp; sourceTree = "<group>"; };
+		AE1DBE2B0F9366530054F8DA /* IDVBDemux.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDVBDemux.h; sourceTree = "<group>"; };
+		AE1DBE2C0F9366530054F8DA /* IDVBDemux.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IDVBDemux.cpp; sourceTree = "<group>"; };
+		AE1DBE340F9367920054F8DA /* CDVBUSBDemux.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVBUSBDemux.h; sourceTree = "<group>"; };
+		AE1DBE350F9367920054F8DA /* CDVBUSBDemux.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CDVBUSBDemux.cpp; sourceTree = "<group>"; };
+		AE56A0960F951926005DA67B /* IDVBDmxDevFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDVBDmxDevFilter.h; sourceTree = "<group>"; };
+		AE56A0970F951926005DA67B /* IDVBDmxDevFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IDVBDmxDevFilter.cpp; sourceTree = "<group>"; };
+		AE6F524C0F8E990B00804DB3 /* DIB7000P.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DIB7000P.h; sourceTree = "<group>"; };
+		AE6F524D0F8E990B00804DB3 /* DIB7000P.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DIB7000P.cpp; sourceTree = "<group>"; };
+		AE6F538A0F8E9F2E00804DB3 /* DibX000.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DibX000.h; sourceTree = "<group>"; };
+		AE6F538B0F8E9F2E00804DB3 /* DibX000.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DibX000.cpp; sourceTree = "<group>"; };
+		AE6F54F70F8EB91800804DB3 /* Dib0070.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dib0070.h; sourceTree = "<group>"; };
+		AE6F54F80F8EB91800804DB3 /* Dib0070.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Dib0070.cpp; sourceTree = "<group>"; };
+		AE6F54FB0F8EB97E00804DB3 /* IDVBTuner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IDVBTuner.h; path = ../USB/IDVBTuner.h; sourceTree = "<group>"; };
+		AE6F54FC0F8EB97E00804DB3 /* IDVBTuner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IDVBTuner.cpp; path = ../USB/IDVBTuner.cpp; sourceTree = "<group>"; };
+		AE6F5C5A0F8FCA9E00804DB3 /* DVB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVB.h; sourceTree = "<group>"; };
+		AE6F5D680F8FE27900804DB3 /* IThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IThread.h; sourceTree = "<group>"; };
+		AE6F5D690F8FE27900804DB3 /* IThread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IThread.cpp; sourceTree = "<group>"; };
+		AE6F5F630F9027FC00804DB3 /* IEventQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IEventQueue.h; sourceTree = "<group>"; };
+		AE6F635D0F90F6CC00804DB3 /* IFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFile.h; sourceTree = "<group>"; };
+		AE6F635E0F90F6CC00804DB3 /* IFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IFile.cpp; sourceTree = "<group>"; };
+		AE6F66890F91574F00804DB3 /* IDVBFrontend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IDVBFrontend.h; path = ../USB/IDVBFrontend.h; sourceTree = "<group>"; };
+		AE6F668A0F91574F00804DB3 /* IDVBFrontend.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IDVBFrontend.cpp; path = ../USB/IDVBFrontend.cpp; sourceTree = "<group>"; };
+		AE8FDEFA0F76ACF000088907 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		AEAD0BA60F93790900289A90 /* IDVBDmxPublic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDVBDmxPublic.h; sourceTree = "<group>"; };
+		AEAD0C4E0F9380D700289A90 /* IDVBDemuxSectionFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDVBDemuxSectionFeed.h; sourceTree = "<group>"; };
+		AEAD0C4F0F9380D700289A90 /* IDVBDemuxSectionFeed.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IDVBDemuxSectionFeed.cpp; sourceTree = "<group>"; };
+		AEAD0C6B0F9381CE00289A90 /* IDVBDemuxTSFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDVBDemuxTSFeed.h; sourceTree = "<group>"; };
+		AEAD0C6C0F9381CE00289A90 /* IDVBDemuxTSFeed.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IDVBDemuxTSFeed.cpp; sourceTree = "<group>"; };
+		AEAD0CBB0F93924400289A90 /* IDVBDVR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDVBDVR.h; sourceTree = "<group>"; };
+		AEAD0CBC0F93924400289A90 /* IDVBDVR.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IDVBDVR.cpp; sourceTree = "<group>"; };
+		AEAD0CDC0F93A02E00289A90 /* CDVBRingBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVBRingBuffer.h; sourceTree = "<group>"; };
+		AEAD0CDD0F93A02E00289A90 /* CDVBRingBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CDVBRingBuffer.cpp; sourceTree = "<group>"; };
+		AEAD0FB30F93B11200289A90 /* IDVBDemuxFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDVBDemuxFeed.h; sourceTree = "<group>"; };
+		AEAD0FB40F93B11200289A90 /* IDVBDemuxFeed.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IDVBDemuxFeed.cpp; sourceTree = "<group>"; };
+		AEB317120F8A4ED800922F4D /* DVBFirmware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVBFirmware.h; sourceTree = "<group>"; };
+		AEB317130F8A4ED800922F4D /* DVBFirmware.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DVBFirmware.cpp; sourceTree = "<group>"; };
+		AEB485F40F8A6BF200E144A4 /* IDVBI2CAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDVBI2CAdapter.h; sourceTree = "<group>"; };
+		AEB485F50F8A6BF200E144A4 /* IDVBI2CAdapter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IDVBI2CAdapter.cpp; sourceTree = "<group>"; };
+		AEB4865D0F8A7A5200E144A4 /* IDVBUSBAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDVBUSBAdapter.h; sourceTree = "<group>"; };
+		AEB4865E0F8A7A5200E144A4 /* IDVBUSBAdapter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IDVBUSBAdapter.cpp; sourceTree = "<group>"; };
+		AEB4897D0F8A8FED00E144A4 /* IDVBAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDVBAdapter.h; sourceTree = "<group>"; };
+		AEB4897E0F8A8FED00E144A4 /* IDVBAdapter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IDVBAdapter.cpp; sourceTree = "<group>"; };
+		AEB48B190F8AA8AC00E144A4 /* IDVBDemod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IDVBDemod.h; path = ../USB/IDVBDemod.h; sourceTree = "<group>"; };
+		AEB48B1A0F8AA8AC00E144A4 /* IDVBDemod.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IDVBDemod.cpp; path = ../USB/IDVBDemod.cpp; sourceTree = "<group>"; };
+		AEB48B280F8AAEA700E144A4 /* IDVBI2CClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDVBI2CClient.h; sourceTree = "<group>"; };
+		AEB48B290F8AAEA700E144A4 /* IDVBI2CClient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IDVBI2CClient.cpp; sourceTree = "<group>"; };
+		AEC632440F8157DA00C7295C /* Dib0700-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Dib0700-Info.plist"; sourceTree = "<group>"; };
+		AEC633000F815F9500C7295C /* MT2266-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MT2266-Info.plist"; sourceTree = "<group>"; };
+		AEC635C60F84040200C7295C /* DVBUSB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DVBUSB.h; path = ../Core/DVBUSB.h; sourceTree = "<group>"; };
+		AEC635C70F84040200C7295C /* DVBUSB.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DVBUSB.cpp; path = ../Core/DVBUSB.cpp; sourceTree = "<group>"; };
+		AEC636820F84070A00C7295C /* Dibcom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dibcom.h; sourceTree = "<group>"; };
+		AEC636830F84070A00C7295C /* Dibcom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Dibcom.cpp; sourceTree = "<group>"; };
+		AEC6379F0F84193900C7295C /* IDVBUSBDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDVBUSBDevice.h; sourceTree = "<group>"; };
+		AEC637A00F84193900C7295C /* IDVBUSBDevice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IDVBUSBDevice.cpp; sourceTree = "<group>"; };
+		AED7EB500F76964800FCCA2F /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = /System/Library/Frameworks/CoreFoundation.framework; sourceTree = "<absolute>"; };
+		AED7EC330F769BD400FCCA2F /* dvbtune */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = dvbtune; sourceTree = BUILT_PRODUCTS_DIR; };
+		AED7EC600F769FAC00FCCA2F /* dvbtune.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dvbtune.cpp; sourceTree = "<group>"; };
+		AED7EC610F769FAC00FCCA2F /* dvbtune.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dvbtune.h; sourceTree = "<group>"; };
+		AED7EC620F769FAC00FCCA2F /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		AED7EC7D0F76A43200FCCA2F /* printInterpretedError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = printInterpretedError.h; sourceTree = "<group>"; };
+		AED7EC7E0F76A43200FCCA2F /* printInterpretedError.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = printInterpretedError.cpp; sourceTree = "<group>"; };
+		AEE082510F7672B900A31DB2 /* dib0070.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dib0070.cpp; sourceTree = "<group>"; };
+		AEE082520F7672B900A31DB2 /* dib0070.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dib0070.h; sourceTree = "<group>"; };
+		AEE082530F7672B900A31DB2 /* dib7000p.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dib7000p.cpp; sourceTree = "<group>"; };
+		AEE082540F7672B900A31DB2 /* dib7000p.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dib7000p.h; sourceTree = "<group>"; };
+		AEE082550F7672B900A31DB2 /* dibx000_common.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dibx000_common.cpp; sourceTree = "<group>"; };
+		AEE082560F7672B900A31DB2 /* dibx000_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dibx000_common.h; sourceTree = "<group>"; };
+		AEE082570F7672B900A31DB2 /* mt2266.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mt2266.cpp; sourceTree = "<group>"; };
+		AEE082580F7672B900A31DB2 /* mt2266.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mt2266.h; sourceTree = "<group>"; };
+		AEE0825A0F7672B900A31DB2 /* demux.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = demux.h; sourceTree = "<group>"; };
+		AEE0825B0F7672B900A31DB2 /* dmxdev.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dmxdev.cpp; sourceTree = "<group>"; };
+		AEE0825C0F7672B900A31DB2 /* dmxdev.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dmxdev.h; sourceTree = "<group>"; };
+		AEE0825D0F7672B900A31DB2 /* dvb_demux.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dvb_demux.cpp; sourceTree = "<group>"; };
+		AEE0825E0F7672B900A31DB2 /* dvb_demux.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dvb_demux.h; sourceTree = "<group>"; };
+		AEE0825F0F7672B900A31DB2 /* dvb_frontend.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dvb_frontend.cpp; sourceTree = "<group>"; };
+		AEE082600F7672B900A31DB2 /* dvb_frontend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dvb_frontend.h; sourceTree = "<group>"; };
+		AEE082610F7672B900A31DB2 /* dvb_ringbuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dvb_ringbuffer.cpp; sourceTree = "<group>"; };
+		AEE082620F7672B900A31DB2 /* dvb_ringbuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dvb_ringbuffer.h; sourceTree = "<group>"; };
+		AEE082630F7672B900A31DB2 /* dvbdev.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dvbdev.cpp; sourceTree = "<group>"; };
+		AEE082640F7672B900A31DB2 /* dvbdev.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dvbdev.h; sourceTree = "<group>"; };
+		AEE082660F7672B900A31DB2 /* dib0700.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dib0700.h; sourceTree = "<group>"; };
+		AEE082670F7672B900A31DB2 /* dib0700_core.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dib0700_core.cpp; sourceTree = "<group>"; };
+		AEE082680F7672B900A31DB2 /* dib0700_devices.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dib0700_devices.cpp; sourceTree = "<group>"; };
+		AEE082690F7672B900A31DB2 /* dib07x0.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dib07x0.h; sourceTree = "<group>"; };
+		AEE0826A0F7672B900A31DB2 /* dvb-usb-dvb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "dvb-usb-dvb.cpp"; sourceTree = "<group>"; };
+		AEE0826C0F7672B900A31DB2 /* dvb-usb-firmware.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "dvb-usb-firmware.cpp"; sourceTree = "<group>"; };
+		AEE0826E0F7672B900A31DB2 /* dvb-usb-i2c.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "dvb-usb-i2c.cpp"; sourceTree = "<group>"; };
+		AEE0826F0F7672B900A31DB2 /* dvb-usb-ids.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "dvb-usb-ids.h"; sourceTree = "<group>"; };
+		AEE082700F7672B900A31DB2 /* dvb-usb-init.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "dvb-usb-init.cpp"; sourceTree = "<group>"; };
+		AEE082710F7672B900A31DB2 /* dvb-usb-urb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "dvb-usb-urb.cpp"; sourceTree = "<group>"; };
+		AEE082720F7672B900A31DB2 /* dvb-usb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "dvb-usb.h"; sourceTree = "<group>"; };
+		AEE082730F7672B900A31DB2 /* usb-urb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "usb-urb.cpp"; sourceTree = "<group>"; };
+		AEE082750F7672B900A31DB2 /* crc32.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crc32.cpp; sourceTree = "<group>"; };
+		AEE082760F7672B900A31DB2 /* crc32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crc32.h; sourceTree = "<group>"; };
+		AEE082770F7672B900A31DB2 /* crossover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crossover.h; sourceTree = "<group>"; };
+		AEE082780F7672B900A31DB2 /* dmx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dmx.h; sourceTree = "<group>"; };
+		AEE082790F7672B900A31DB2 /* firmware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = firmware.h; sourceTree = "<group>"; };
+		AEE0827A0F7672B900A31DB2 /* frontend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = frontend.h; sourceTree = "<group>"; };
+		AEE0827B0F7672B900A31DB2 /* i2c.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = i2c.cpp; sourceTree = "<group>"; };
+		AEE0827C0F7672B900A31DB2 /* i2c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = i2c.h; sourceTree = "<group>"; };
+		AEE0827D0F7672B900A31DB2 /* input.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = input.h; sourceTree = "<group>"; };
+		AEE0827E0F7672B900A31DB2 /* list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = list.h; sourceTree = "<group>"; };
+		AEE0827F0F7672B900A31DB2 /* usb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = usb.cpp; sourceTree = "<group>"; };
+		AEE082800F7672B900A31DB2 /* usb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = usb.h; sourceTree = "<group>"; };
+		AEE082810F7672B900A31DB2 /* usb_ch9.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = usb_ch9.h; sourceTree = "<group>"; };
+		AEE082BF0F76840500A31DB2 /* dvb-usb-common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "dvb-usb-common.h"; sourceTree = "<group>"; };
+		AEE084750F768B5C00A31DB2 /* device.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = device.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8DC2EF560486A6940098B216 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AED7EB510F76964800FCCA2F /* CoreFoundation.framework in Frameworks */,
+				AE8FDEFB0F76ACF000088907 /* IOKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AED7EC310F769BD400FCCA2F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AE8FDF220F76AD1700088907 /* IOKit.framework in Frameworks */,
+				AED7EC420F769C0A00FCCA2F /* Video4Mac.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		034768DFFF38A50411DB9C8B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8DC2EF5B0486A6940098B216 /* Video4Mac.framework */,
+				AED7EC330F769BD400FCCA2F /* dvbtune */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0867D691FE84028FC02AAC07 /* Video4Mac */ = {
+			isa = PBXGroup;
+			children = (
+				08FB77AEFE84172EC02AAC07 /* Classes */,
+				32C88DFF0371C24200C91783 /* Other Sources */,
+				089C1665FE841158C02AAC07 /* Resources */,
+				0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */,
+				034768DFFF38A50411DB9C8B /* Products */,
+				AE8FDEFA0F76ACF000088907 /* IOKit.framework */,
+				AEC632440F8157DA00C7295C /* Dib0700-Info.plist */,
+				AEC633000F815F9500C7295C /* MT2266-Info.plist */,
+			);
+			name = Video4Mac;
+			sourceTree = "<group>";
+		};
+		0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7B0FEA5585E11CA2CBB /* Linked Frameworks */,
+				1058C7B2FEA5585E11CA2CBB /* Other Frameworks */,
+			);
+			name = "External Frameworks and Libraries";
+			sourceTree = "<group>";
+		};
+		089C1665FE841158C02AAC07 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8DC2EF5A0486A6940098B216 /* Info.plist */,
+				089C1666FE841158C02AAC07 /* InfoPlist.strings */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		08FB77AEFE84172EC02AAC07 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				AEE082500F7672B900A31DB2 /* Frontends */,
+				AEE082590F7672B900A31DB2 /* Core */,
+				AEE082650F7672B900A31DB2 /* USB */,
+				AEE082740F7672B900A31DB2 /* Factories */,
+				AE6F5C5A0F8FCA9E00804DB3 /* DVB.h */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		1058C7B0FEA5585E11CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AED7EB500F76964800FCCA2F /* CoreFoundation.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7B2FEA5585E11CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		32C88DFF0371C24200C91783 /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				AED7EC5D0F769FAC00FCCA2F /* Apps */,
+				32DBCF5E0370ADEE00C91783 /* Video4Mac_Prefix.pch */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		AED7EC5D0F769FAC00FCCA2F /* Apps */ = {
+			isa = PBXGroup;
+			children = (
+				AED7EC5E0F769FAC00FCCA2F /* dvbsnoop */,
+				AED7EC5F0F769FAC00FCCA2F /* dvbtune */,
+			);
+			path = Apps;
+			sourceTree = "<group>";
+		};
+		AED7EC5E0F769FAC00FCCA2F /* dvbsnoop */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = dvbsnoop;
+			sourceTree = "<group>";
+		};
+		AED7EC5F0F769FAC00FCCA2F /* dvbtune */ = {
+			isa = PBXGroup;
+			children = (
+				AED7EC7D0F76A43200FCCA2F /* printInterpretedError.h */,
+				AED7EC7E0F76A43200FCCA2F /* printInterpretedError.cpp */,
+				AED7EC600F769FAC00FCCA2F /* dvbtune.cpp */,
+				AED7EC610F769FAC00FCCA2F /* dvbtune.h */,
+				AED7EC620F769FAC00FCCA2F /* main.cpp */,
+			);
+			path = dvbtune;
+			sourceTree = "<group>";
+		};
+		AEE082500F7672B900A31DB2 /* Frontends */ = {
+			isa = PBXGroup;
+			children = (
+				AEE082510F7672B900A31DB2 /* dib0070.cpp */,
+				AEE082520F7672B900A31DB2 /* dib0070.h */,
+				AEE082530F7672B900A31DB2 /* dib7000p.cpp */,
+				AEE082540F7672B900A31DB2 /* dib7000p.h */,
+				AEE082550F7672B900A31DB2 /* dibx000_common.cpp */,
+				AEE082560F7672B900A31DB2 /* dibx000_common.h */,
+				AEE082570F7672B900A31DB2 /* mt2266.cpp */,
+				AEE082580F7672B900A31DB2 /* mt2266.h */,
+			);
+			path = Frontends;
+			sourceTree = "<group>";
+		};
+		AEE082590F7672B900A31DB2 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				AE04569B0F7C126500769B7D /* MacDVB.h */,
+				AE04569C0F7C126500769B7D /* MacDVB.cpp */,
+				AEB4897D0F8A8FED00E144A4 /* IDVBAdapter.h */,
+				AEB4897E0F8A8FED00E144A4 /* IDVBAdapter.cpp */,
+				AEB48B190F8AA8AC00E144A4 /* IDVBDemod.h */,
+				AEB48B1A0F8AA8AC00E144A4 /* IDVBDemod.cpp */,
+				AE6F66890F91574F00804DB3 /* IDVBFrontend.h */,
+				AE6F668A0F91574F00804DB3 /* IDVBFrontend.cpp */,
+				AE6F54FB0F8EB97E00804DB3 /* IDVBTuner.h */,
+				AE6F54FC0F8EB97E00804DB3 /* IDVBTuner.cpp */,
+				AE1DBE2B0F9366530054F8DA /* IDVBDemux.h */,
+				AE1DBE2C0F9366530054F8DA /* IDVBDemux.cpp */,
+				AEAD0C4E0F9380D700289A90 /* IDVBDemuxSectionFeed.h */,
+				AEAD0C4F0F9380D700289A90 /* IDVBDemuxSectionFeed.cpp */,
+				AEAD0C6B0F9381CE00289A90 /* IDVBDemuxTSFeed.h */,
+				AEAD0C6C0F9381CE00289A90 /* IDVBDemuxTSFeed.cpp */,
+				AEAD0FB30F93B11200289A90 /* IDVBDemuxFeed.h */,
+				AEAD0FB40F93B11200289A90 /* IDVBDemuxFeed.cpp */,
+				AE56A0960F951926005DA67B /* IDVBDmxDevFilter.h */,
+				AE56A0970F951926005DA67B /* IDVBDmxDevFilter.cpp */,
+				AEAD0BA60F93790900289A90 /* IDVBDmxPublic.h */,
+				AEAD0CBB0F93924400289A90 /* IDVBDVR.h */,
+				AEAD0CBC0F93924400289A90 /* IDVBDVR.cpp */,
+				AE0BE6F90F9BD031000F1FA4 /* IDVBEvent.h */,
+				AE0BE6FA0F9BD031000F1FA4 /* IDVBEvent.cpp */,
+				AEAD0CDC0F93A02E00289A90 /* CDVBRingBuffer.h */,
+				AEAD0CDD0F93A02E00289A90 /* CDVBRingBuffer.cpp */,
+				AE6F635D0F90F6CC00804DB3 /* IFile.h */,
+				AE6F635E0F90F6CC00804DB3 /* IFile.cpp */,
+				AE6F5D680F8FE27900804DB3 /* IThread.h */,
+				AE6F5D690F8FE27900804DB3 /* IThread.cpp */,
+				AE6F5F630F9027FC00804DB3 /* IEventQueue.h */,
+				AE1DBB9B0F923EDD0054F8DA /* CDVBLog.h */,
+				AE1DBB9C0F923EDD0054F8DA /* CDVBLog.cpp */,
+				AEE0825A0F7672B900A31DB2 /* demux.h */,
+				AEE0825B0F7672B900A31DB2 /* dmxdev.cpp */,
+				AEE0825C0F7672B900A31DB2 /* dmxdev.h */,
+				AEE0825D0F7672B900A31DB2 /* dvb_demux.cpp */,
+				AEE0825E0F7672B900A31DB2 /* dvb_demux.h */,
+				AEE0825F0F7672B900A31DB2 /* dvb_frontend.cpp */,
+				AEE082600F7672B900A31DB2 /* dvb_frontend.h */,
+				AEE082610F7672B900A31DB2 /* dvb_ringbuffer.cpp */,
+				AEE082620F7672B900A31DB2 /* dvb_ringbuffer.h */,
+				AEE082630F7672B900A31DB2 /* dvbdev.cpp */,
+				AEE082640F7672B900A31DB2 /* dvbdev.h */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		AEE082650F7672B900A31DB2 /* USB */ = {
+			isa = PBXGroup;
+			children = (
+				AEC6379F0F84193900C7295C /* IDVBUSBDevice.h */,
+				AEC637A00F84193900C7295C /* IDVBUSBDevice.cpp */,
+				AEC635C60F84040200C7295C /* DVBUSB.h */,
+				AEC635C70F84040200C7295C /* DVBUSB.cpp */,
+				AEB317120F8A4ED800922F4D /* DVBFirmware.h */,
+				AEB317130F8A4ED800922F4D /* DVBFirmware.cpp */,
+				AEB485F40F8A6BF200E144A4 /* IDVBI2CAdapter.h */,
+				AEB485F50F8A6BF200E144A4 /* IDVBI2CAdapter.cpp */,
+				AEB4865D0F8A7A5200E144A4 /* IDVBUSBAdapter.h */,
+				AEB4865E0F8A7A5200E144A4 /* IDVBUSBAdapter.cpp */,
+				AEB48B280F8AAEA700E144A4 /* IDVBI2CClient.h */,
+				AEB48B290F8AAEA700E144A4 /* IDVBI2CClient.cpp */,
+				AE1DBE340F9367920054F8DA /* CDVBUSBDemux.h */,
+				AE1DBE350F9367920054F8DA /* CDVBUSBDemux.cpp */,
+				AEE082660F7672B900A31DB2 /* dib0700.h */,
+				AEE082670F7672B900A31DB2 /* dib0700_core.cpp */,
+				AEE082680F7672B900A31DB2 /* dib0700_devices.cpp */,
+				AEE082690F7672B900A31DB2 /* dib07x0.h */,
+				AEE0826A0F7672B900A31DB2 /* dvb-usb-dvb.cpp */,
+				AEE0826C0F7672B900A31DB2 /* dvb-usb-firmware.cpp */,
+				AEE0826E0F7672B900A31DB2 /* dvb-usb-i2c.cpp */,
+				AEE0826F0F7672B900A31DB2 /* dvb-usb-ids.h */,
+				AEE082700F7672B900A31DB2 /* dvb-usb-init.cpp */,
+				AEE082710F7672B900A31DB2 /* dvb-usb-urb.cpp */,
+				AEE082720F7672B900A31DB2 /* dvb-usb.h */,
+				AEE082730F7672B900A31DB2 /* usb-urb.cpp */,
+				AEE082BF0F76840500A31DB2 /* dvb-usb-common.h */,
+				AEC636820F84070A00C7295C /* Dibcom.h */,
+				AEC636830F84070A00C7295C /* Dibcom.cpp */,
+				AE6F524C0F8E990B00804DB3 /* DIB7000P.h */,
+				AE6F524D0F8E990B00804DB3 /* DIB7000P.cpp */,
+				AE6F538A0F8E9F2E00804DB3 /* DibX000.h */,
+				AE6F538B0F8E9F2E00804DB3 /* DibX000.cpp */,
+				AE6F54F70F8EB91800804DB3 /* Dib0070.h */,
+				AE6F54F80F8EB91800804DB3 /* Dib0070.cpp */,
+			);
+			path = USB;
+			sourceTree = "<group>";
+		};
+		AEE082740F7672B900A31DB2 /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				AEE082780F7672B900A31DB2 /* dmx.h */,
+				AEE082750F7672B900A31DB2 /* crc32.cpp */,
+				AEE082760F7672B900A31DB2 /* crc32.h */,
+				AEE082770F7672B900A31DB2 /* crossover.h */,
+				AEE084750F768B5C00A31DB2 /* device.h */,
+				AEE082790F7672B900A31DB2 /* firmware.h */,
+				AEE0827A0F7672B900A31DB2 /* frontend.h */,
+				AEE0827B0F7672B900A31DB2 /* i2c.cpp */,
+				AEE0827C0F7672B900A31DB2 /* i2c.h */,
+				AEE0827D0F7672B900A31DB2 /* input.h */,
+				AEE0827E0F7672B900A31DB2 /* list.h */,
+				AEE0827F0F7672B900A31DB2 /* usb.cpp */,
+				AEE082800F7672B900A31DB2 /* usb.h */,
+				AEE082810F7672B900A31DB2 /* usb_ch9.h */,
+			);
+			path = Factories;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		8DC2EF500486A6940098B216 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AE04577A0F7C175300769B7D /* MacDVB.h in Headers */,
+				AEC635C80F84040200C7295C /* DVBUSB.h in Headers */,
+				AEC636840F84070A00C7295C /* Dibcom.h in Headers */,
+				AEC637A10F84193900C7295C /* IDVBUSBDevice.h in Headers */,
+				AEB317140F8A4ED800922F4D /* DVBFirmware.h in Headers */,
+				AEB485F60F8A6BF200E144A4 /* IDVBI2CAdapter.h in Headers */,
+				AEB4865F0F8A7A5200E144A4 /* IDVBUSBAdapter.h in Headers */,
+				AEB4897F0F8A8FED00E144A4 /* IDVBAdapter.h in Headers */,
+				AEB48B1B0F8AA8AC00E144A4 /* IDVBDemod.h in Headers */,
+				AEB48B2A0F8AAEA700E144A4 /* IDVBI2CClient.h in Headers */,
+				AE6F524E0F8E990B00804DB3 /* DIB7000P.h in Headers */,
+				AE6F538C0F8E9F2E00804DB3 /* DibX000.h in Headers */,
+				AE6F54F90F8EB91800804DB3 /* Dib0070.h in Headers */,
+				AE6F54FD0F8EB97E00804DB3 /* IDVBTuner.h in Headers */,
+				AE6F5C5B0F8FCA9E00804DB3 /* DVB.h in Headers */,
+				AE6F5D6A0F8FE27900804DB3 /* IThread.h in Headers */,
+				AE6F5F650F9027FC00804DB3 /* IEventQueue.h in Headers */,
+				AE6F635F0F90F6CC00804DB3 /* IFile.h in Headers */,
+				AE6F668B0F91574F00804DB3 /* IDVBFrontend.h in Headers */,
+				AE1DBB9D0F923EDD0054F8DA /* CDVBLog.h in Headers */,
+				AE1DBE2D0F9366530054F8DA /* IDVBDemux.h in Headers */,
+				AE1DBE360F9367920054F8DA /* CDVBUSBDemux.h in Headers */,
+				AEAD0BA70F93790900289A90 /* IDVBDmxPublic.h in Headers */,
+				AEAD0C500F9380D700289A90 /* IDVBDemuxSectionFeed.h in Headers */,
+				AEAD0C6D0F9381CE00289A90 /* IDVBDemuxTSFeed.h in Headers */,
+				AEAD0CBD0F93924400289A90 /* IDVBDVR.h in Headers */,
+				AEAD0CDE0F93A02E00289A90 /* CDVBRingBuffer.h in Headers */,
+				AEAD0FB50F93B11200289A90 /* IDVBDemuxFeed.h in Headers */,
+				AE56A0980F951926005DA67B /* IDVBDmxDevFilter.h in Headers */,
+				AE0BE6FB0F9BD031000F1FA4 /* IDVBEvent.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		8DC2EF4F0486A6940098B216 /* Video4Mac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "Video4Mac" */;
+			buildPhases = (
+				8DC2EF500486A6940098B216 /* Headers */,
+				8DC2EF520486A6940098B216 /* Resources */,
+				8DC2EF540486A6940098B216 /* Sources */,
+				8DC2EF560486A6940098B216 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Video4Mac;
+			productInstallPath = "$(HOME)/Library/Frameworks";
+			productName = Video4Mac;
+			productReference = 8DC2EF5B0486A6940098B216 /* Video4Mac.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		AED7EC320F769BD400FCCA2F /* dvbtune */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AED7EC4F0F769C5800FCCA2F /* Build configuration list for PBXNativeTarget "dvbtune" */;
+			buildPhases = (
+				AED7EC300F769BD400FCCA2F /* Sources */,
+				AED7EC310F769BD400FCCA2F /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AEC633050F815FFD00C7295C /* PBXTargetDependency */,
+			);
+			name = dvbtune;
+			productName = dvbtune;
+			productReference = AED7EC330F769BD400FCCA2F /* dvbtune */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0867D690FE84028FC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB91B108733DA50010E9CD /* Build configuration list for PBXProject "Video4Mac" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 0867D691FE84028FC02AAC07 /* Video4Mac */;
+			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8DC2EF4F0486A6940098B216 /* Video4Mac */,
+				AED7EC320F769BD400FCCA2F /* dvbtune */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8DC2EF520486A6940098B216 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8DC2EF540486A6940098B216 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AE0457A60F7C1A5800769B7D /* MacDVB.cpp in Sources */,
+				AEC635C90F84040200C7295C /* DVBUSB.cpp in Sources */,
+				AEC636850F84070A00C7295C /* Dibcom.cpp in Sources */,
+				AEC637A20F84193900C7295C /* IDVBUSBDevice.cpp in Sources */,
+				AEB317150F8A4ED800922F4D /* DVBFirmware.cpp in Sources */,
+				AEB485F70F8A6BF200E144A4 /* IDVBI2CAdapter.cpp in Sources */,
+				AEB486600F8A7A5200E144A4 /* IDVBUSBAdapter.cpp in Sources */,
+				AEB489800F8A8FED00E144A4 /* IDVBAdapter.cpp in Sources */,
+				AEB48B1C0F8AA8AC00E144A4 /* IDVBDemod.cpp in Sources */,
+				AEB48B2B0F8AAEA700E144A4 /* IDVBI2CClient.cpp in Sources */,
+				AE6F524F0F8E990B00804DB3 /* DIB7000P.cpp in Sources */,
+				AE6F538D0F8E9F2E00804DB3 /* DibX000.cpp in Sources */,
+				AE6F54FA0F8EB91800804DB3 /* Dib0070.cpp in Sources */,
+				AE6F54FE0F8EB97E00804DB3 /* IDVBTuner.cpp in Sources */,
+				AE6F5D6B0F8FE27900804DB3 /* IThread.cpp in Sources */,
+				AE6F668C0F91574F00804DB3 /* IDVBFrontend.cpp in Sources */,
+				AE1DBB9E0F923EDD0054F8DA /* CDVBLog.cpp in Sources */,
+				AE1DBE2E0F9366530054F8DA /* IDVBDemux.cpp in Sources */,
+				AE1DBE370F9367920054F8DA /* CDVBUSBDemux.cpp in Sources */,
+				AEAD0C510F9380D700289A90 /* IDVBDemuxSectionFeed.cpp in Sources */,
+				AEAD0C6E0F9381CE00289A90 /* IDVBDemuxTSFeed.cpp in Sources */,
+				AEAD0CDF0F93A02E00289A90 /* CDVBRingBuffer.cpp in Sources */,
+				AEAD0FB60F93B11200289A90 /* IDVBDemuxFeed.cpp in Sources */,
+				AE56A0990F951926005DA67B /* IDVBDmxDevFilter.cpp in Sources */,
+				AE0BE6FC0F9BD031000F1FA4 /* IDVBEvent.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AED7EC300F769BD400FCCA2F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AED7EC670F769FC300FCCA2F /* dvbtune.cpp in Sources */,
+				AED7EC690F769FC300FCCA2F /* main.cpp in Sources */,
+				AED7EC7F0F76A43200FCCA2F /* printInterpretedError.cpp in Sources */,
+				AE04569D0F7C126500769B7D /* MacDVB.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AEC633050F815FFD00C7295C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DC2EF4F0486A6940098B216 /* Video4Mac */;
+			targetProxy = AEC633040F815FFD00C7295C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		089C1666FE841158C02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C1667FE841158C02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB91AE08733DA50010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Video4Mac_Prefix.pch;
+				HEADER_SEARCH_PATHS = (
+					/Users/croberts/Documents/Coding/Video4Mac/Factories,
+					/Users/croberts/Documents/Coding/Video4Mac/Core,
+					/Users/croberts/Documents/Coding/Video4Mac/USB,
+				);
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				OTHER_CFLAGS = "";
+				PRODUCT_NAME = Video4Mac;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		1DEB91AF08733DA50010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Video4Mac_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				OTHER_CFLAGS = "";
+				PRODUCT_NAME = Video4Mac;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		1DEB91B208733DA50010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_VERSION = 4.2;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.5;
+			};
+			name = Debug;
+		};
+		1DEB91B308733DA50010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_VERSION = 4.2;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.5;
+			};
+			name = Release;
+		};
+		AED7EC350F769BD400FCCA2F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = dvbtune;
+			};
+			name = Debug;
+		};
+		AED7EC360F769BD400FCCA2F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = dvbtune;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "Video4Mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB91AE08733DA50010E9CD /* Debug */,
+				1DEB91AF08733DA50010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB91B108733DA50010E9CD /* Build configuration list for PBXProject "Video4Mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB91B208733DA50010E9CD /* Debug */,
+				1DEB91B308733DA50010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AED7EC4F0F769C5800FCCA2F /* Build configuration list for PBXNativeTarget "dvbtune" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AED7EC350F769BD400FCCA2F /* Debug */,
+				AED7EC360F769BD400FCCA2F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0867D690FE84028FC02AAC07 /* Project object */;
+}
