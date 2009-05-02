@@ -155,52 +155,6 @@
 		AED7EC620F769FAC00FCCA2F /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		AED7EC7D0F76A43200FCCA2F /* printInterpretedError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = printInterpretedError.h; sourceTree = "<group>"; };
 		AED7EC7E0F76A43200FCCA2F /* printInterpretedError.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = printInterpretedError.cpp; sourceTree = "<group>"; };
-		AEE082510F7672B900A31DB2 /* dib0070.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dib0070.cpp; sourceTree = "<group>"; };
-		AEE082520F7672B900A31DB2 /* dib0070.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dib0070.h; sourceTree = "<group>"; };
-		AEE082530F7672B900A31DB2 /* dib7000p.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dib7000p.cpp; sourceTree = "<group>"; };
-		AEE082540F7672B900A31DB2 /* dib7000p.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dib7000p.h; sourceTree = "<group>"; };
-		AEE082550F7672B900A31DB2 /* dibx000_common.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dibx000_common.cpp; sourceTree = "<group>"; };
-		AEE082560F7672B900A31DB2 /* dibx000_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dibx000_common.h; sourceTree = "<group>"; };
-		AEE082570F7672B900A31DB2 /* mt2266.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mt2266.cpp; sourceTree = "<group>"; };
-		AEE082580F7672B900A31DB2 /* mt2266.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mt2266.h; sourceTree = "<group>"; };
-		AEE0825A0F7672B900A31DB2 /* demux.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = demux.h; sourceTree = "<group>"; };
-		AEE0825B0F7672B900A31DB2 /* dmxdev.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dmxdev.cpp; sourceTree = "<group>"; };
-		AEE0825C0F7672B900A31DB2 /* dmxdev.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dmxdev.h; sourceTree = "<group>"; };
-		AEE0825D0F7672B900A31DB2 /* dvb_demux.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dvb_demux.cpp; sourceTree = "<group>"; };
-		AEE0825E0F7672B900A31DB2 /* dvb_demux.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dvb_demux.h; sourceTree = "<group>"; };
-		AEE0825F0F7672B900A31DB2 /* dvb_frontend.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dvb_frontend.cpp; sourceTree = "<group>"; };
-		AEE082600F7672B900A31DB2 /* dvb_frontend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dvb_frontend.h; sourceTree = "<group>"; };
-		AEE082610F7672B900A31DB2 /* dvb_ringbuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dvb_ringbuffer.cpp; sourceTree = "<group>"; };
-		AEE082620F7672B900A31DB2 /* dvb_ringbuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dvb_ringbuffer.h; sourceTree = "<group>"; };
-		AEE082630F7672B900A31DB2 /* dvbdev.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dvbdev.cpp; sourceTree = "<group>"; };
-		AEE082640F7672B900A31DB2 /* dvbdev.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dvbdev.h; sourceTree = "<group>"; };
-		AEE082660F7672B900A31DB2 /* dib0700.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dib0700.h; sourceTree = "<group>"; };
-		AEE082670F7672B900A31DB2 /* dib0700_core.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dib0700_core.cpp; sourceTree = "<group>"; };
-		AEE082680F7672B900A31DB2 /* dib0700_devices.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dib0700_devices.cpp; sourceTree = "<group>"; };
-		AEE082690F7672B900A31DB2 /* dib07x0.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dib07x0.h; sourceTree = "<group>"; };
-		AEE0826A0F7672B900A31DB2 /* dvb-usb-dvb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "dvb-usb-dvb.cpp"; sourceTree = "<group>"; };
-		AEE0826C0F7672B900A31DB2 /* dvb-usb-firmware.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "dvb-usb-firmware.cpp"; sourceTree = "<group>"; };
-		AEE0826E0F7672B900A31DB2 /* dvb-usb-i2c.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "dvb-usb-i2c.cpp"; sourceTree = "<group>"; };
-		AEE0826F0F7672B900A31DB2 /* dvb-usb-ids.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "dvb-usb-ids.h"; sourceTree = "<group>"; };
-		AEE082700F7672B900A31DB2 /* dvb-usb-init.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "dvb-usb-init.cpp"; sourceTree = "<group>"; };
-		AEE082710F7672B900A31DB2 /* dvb-usb-urb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "dvb-usb-urb.cpp"; sourceTree = "<group>"; };
-		AEE082720F7672B900A31DB2 /* dvb-usb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "dvb-usb.h"; sourceTree = "<group>"; };
-		AEE082730F7672B900A31DB2 /* usb-urb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "usb-urb.cpp"; sourceTree = "<group>"; };
-		AEE082750F7672B900A31DB2 /* crc32.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crc32.cpp; sourceTree = "<group>"; };
-		AEE082760F7672B900A31DB2 /* crc32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crc32.h; sourceTree = "<group>"; };
-		AEE082770F7672B900A31DB2 /* crossover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crossover.h; sourceTree = "<group>"; };
-		AEE082780F7672B900A31DB2 /* dmx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dmx.h; sourceTree = "<group>"; };
-		AEE082790F7672B900A31DB2 /* firmware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = firmware.h; sourceTree = "<group>"; };
-		AEE0827A0F7672B900A31DB2 /* frontend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = frontend.h; sourceTree = "<group>"; };
-		AEE0827B0F7672B900A31DB2 /* i2c.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = i2c.cpp; sourceTree = "<group>"; };
-		AEE0827C0F7672B900A31DB2 /* i2c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = i2c.h; sourceTree = "<group>"; };
-		AEE0827D0F7672B900A31DB2 /* input.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = input.h; sourceTree = "<group>"; };
-		AEE0827E0F7672B900A31DB2 /* list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = list.h; sourceTree = "<group>"; };
-		AEE0827F0F7672B900A31DB2 /* usb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = usb.cpp; sourceTree = "<group>"; };
-		AEE082800F7672B900A31DB2 /* usb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = usb.h; sourceTree = "<group>"; };
-		AEE082810F7672B900A31DB2 /* usb_ch9.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = usb_ch9.h; sourceTree = "<group>"; };
-		AEE082BF0F76840500A31DB2 /* dvb-usb-common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "dvb-usb-common.h"; sourceTree = "<group>"; };
-		AEE084750F768B5C00A31DB2 /* device.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = device.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -270,10 +224,8 @@
 		08FB77AEFE84172EC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				AEE082500F7672B900A31DB2 /* Frontends */,
 				AEE082590F7672B900A31DB2 /* Core */,
 				AEE082650F7672B900A31DB2 /* USB */,
-				AEE082740F7672B900A31DB2 /* Factories */,
 				AE6F5C5A0F8FCA9E00804DB3 /* DVB.h */,
 			);
 			name = Classes;
@@ -331,21 +283,6 @@
 			path = dvbtune;
 			sourceTree = "<group>";
 		};
-		AEE082500F7672B900A31DB2 /* Frontends */ = {
-			isa = PBXGroup;
-			children = (
-				AEE082510F7672B900A31DB2 /* dib0070.cpp */,
-				AEE082520F7672B900A31DB2 /* dib0070.h */,
-				AEE082530F7672B900A31DB2 /* dib7000p.cpp */,
-				AEE082540F7672B900A31DB2 /* dib7000p.h */,
-				AEE082550F7672B900A31DB2 /* dibx000_common.cpp */,
-				AEE082560F7672B900A31DB2 /* dibx000_common.h */,
-				AEE082570F7672B900A31DB2 /* mt2266.cpp */,
-				AEE082580F7672B900A31DB2 /* mt2266.h */,
-			);
-			path = Frontends;
-			sourceTree = "<group>";
-		};
 		AEE082590F7672B900A31DB2 /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -383,17 +320,6 @@
 				AE6F5F630F9027FC00804DB3 /* IEventQueue.h */,
 				AE1DBB9B0F923EDD0054F8DA /* CDVBLog.h */,
 				AE1DBB9C0F923EDD0054F8DA /* CDVBLog.cpp */,
-				AEE0825A0F7672B900A31DB2 /* demux.h */,
-				AEE0825B0F7672B900A31DB2 /* dmxdev.cpp */,
-				AEE0825C0F7672B900A31DB2 /* dmxdev.h */,
-				AEE0825D0F7672B900A31DB2 /* dvb_demux.cpp */,
-				AEE0825E0F7672B900A31DB2 /* dvb_demux.h */,
-				AEE0825F0F7672B900A31DB2 /* dvb_frontend.cpp */,
-				AEE082600F7672B900A31DB2 /* dvb_frontend.h */,
-				AEE082610F7672B900A31DB2 /* dvb_ringbuffer.cpp */,
-				AEE082620F7672B900A31DB2 /* dvb_ringbuffer.h */,
-				AEE082630F7672B900A31DB2 /* dvbdev.cpp */,
-				AEE082640F7672B900A31DB2 /* dvbdev.h */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -415,19 +341,6 @@
 				AEB48B290F8AAEA700E144A4 /* IDVBI2CClient.cpp */,
 				AE1DBE340F9367920054F8DA /* CDVBUSBDemux.h */,
 				AE1DBE350F9367920054F8DA /* CDVBUSBDemux.cpp */,
-				AEE082660F7672B900A31DB2 /* dib0700.h */,
-				AEE082670F7672B900A31DB2 /* dib0700_core.cpp */,
-				AEE082680F7672B900A31DB2 /* dib0700_devices.cpp */,
-				AEE082690F7672B900A31DB2 /* dib07x0.h */,
-				AEE0826A0F7672B900A31DB2 /* dvb-usb-dvb.cpp */,
-				AEE0826C0F7672B900A31DB2 /* dvb-usb-firmware.cpp */,
-				AEE0826E0F7672B900A31DB2 /* dvb-usb-i2c.cpp */,
-				AEE0826F0F7672B900A31DB2 /* dvb-usb-ids.h */,
-				AEE082700F7672B900A31DB2 /* dvb-usb-init.cpp */,
-				AEE082710F7672B900A31DB2 /* dvb-usb-urb.cpp */,
-				AEE082720F7672B900A31DB2 /* dvb-usb.h */,
-				AEE082730F7672B900A31DB2 /* usb-urb.cpp */,
-				AEE082BF0F76840500A31DB2 /* dvb-usb-common.h */,
 				AEC636820F84070A00C7295C /* Dibcom.h */,
 				AEC636830F84070A00C7295C /* Dibcom.cpp */,
 				AE6F524C0F8E990B00804DB3 /* DIB7000P.h */,
@@ -438,27 +351,6 @@
 				AE6F54F80F8EB91800804DB3 /* Dib0070.cpp */,
 			);
 			path = USB;
-			sourceTree = "<group>";
-		};
-		AEE082740F7672B900A31DB2 /* Factories */ = {
-			isa = PBXGroup;
-			children = (
-				AEE082780F7672B900A31DB2 /* dmx.h */,
-				AEE082750F7672B900A31DB2 /* crc32.cpp */,
-				AEE082760F7672B900A31DB2 /* crc32.h */,
-				AEE082770F7672B900A31DB2 /* crossover.h */,
-				AEE084750F768B5C00A31DB2 /* device.h */,
-				AEE082790F7672B900A31DB2 /* firmware.h */,
-				AEE0827A0F7672B900A31DB2 /* frontend.h */,
-				AEE0827B0F7672B900A31DB2 /* i2c.cpp */,
-				AEE0827C0F7672B900A31DB2 /* i2c.h */,
-				AEE0827D0F7672B900A31DB2 /* input.h */,
-				AEE0827E0F7672B900A31DB2 /* list.h */,
-				AEE0827F0F7672B900A31DB2 /* usb.cpp */,
-				AEE082800F7672B900A31DB2 /* usb.h */,
-				AEE082810F7672B900A31DB2 /* usb_ch9.h */,
-			);
-			path = Factories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

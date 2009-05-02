@@ -8,7 +8,7 @@
  */
 
 #include "Dibcom.h"
-#include "Firmware.h"
+//#include "Firmware.h"
 #include <CDVBLog.h>
 #include <string>
 #include <iostream>
