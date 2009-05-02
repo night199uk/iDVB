@@ -1,0 +1,5 @@
+//
+// Prefix header for all source files of the 'Video4Mac' target in the 'Video4Mac' project.
+//
+
+#include <CoreFoundation/CoreFoundation.h>
