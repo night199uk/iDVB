@@ -67,7 +67,6 @@ IDVBFrontend::IDVBFrontend()
 ////////////////////////////////////////////////////
 int	IDVBFrontend::Initialize()
 {
-	fprintf(stderr, "semming down\n");
 	m_Sem.Down();
 	m_TuneModeFlags &= ~kFETuneModeOneShot;
 	m_Tone = -1;
@@ -99,7 +98,6 @@ bool IDVBFrontend::ShouldWakeup()
 
 void IDVBFrontend::Wakeup()
 {
-	fprintf(stderr, "wakeup called.\n");
     m_Wakeup = true;
 	m_Wait.SignalAll();
 }
@@ -131,7 +129,6 @@ void IDVBFrontend::AddEvent(kFEStatus status)
     m_EventW = wp;
     e->status = status;
 	m_EventMutex.Unlock();
-	fprintf(stderr, "going to signal all sleepers.\n");
 	m_EventWait.SignalAll();
 }
 
@@ -220,15 +217,12 @@ int IDVBFrontend::CheckParameters(DVBFrontendParameters *parms)
 int IDVBFrontend::SetFrontend(DVBFrontendParameters *params)
 {
 	struct DVBFrontendTuneSettings FETuneSettings;
-	fprintf(stderr, "setting frontend, downing sem.\n");
 	m_Sem.Down();
 	
 	if (CheckParameters(params) < 0) {
 		return -EINVAL;
 	}
-	
-	fprintf(stderr, "setting frontend settings\n");
-	
+		
 	memcpy (&m_Parameters, params, sizeof (DVBFrontendParameters));
 	
 	memset(&FETuneSettings, 0, sizeof(DVBFrontendTuneSettings));
@@ -290,8 +284,8 @@ int IDVBFrontend::SetFrontend(DVBFrontendParameters *params)
 	AddEvent((kFEStatus)0);
 	m_Status = (kFEStatus) 0;
 	Wakeup();
-	fprintf(stderr, "setting frontend, upping sem.\n");
 	m_Sem.Up();	
+
 	return 0;
 }
 
@@ -342,7 +336,6 @@ int IDVBFrontend::SWZigZagAutoTune(int check_wrapped)
 	
     int original_inversion = m_Parameters.Inversion;
     UInt32 original_frequency = m_Parameters.Frequency;
-	__uint16_t signal;
 	
     /* are we using autoinversion? */
     autoinversion = ((!(m_FrontendInfo.Capabilities & FE_CAN_INVERSION_AUTO)) &&

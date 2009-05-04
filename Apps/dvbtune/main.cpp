@@ -141,6 +141,16 @@ void filter_and_record()
 	fclose(out);
 }
 
+void free_pat_list() {
+	pat_t* t=pats;
+	
+	while (pats!=NULL) {
+		t=pats->next;
+		free(pats);
+		pats=t;
+	}
+};
+
 int main (int argc, const char * argv[]) 
 {
 	
@@ -155,6 +165,11 @@ int main (int argc, const char * argv[])
 	kFEGuardInterval		GuardInterval		= GUARD_INTERVAL_DEFAULT;
 	kFECodeRate				HP_CodeRate			= HP_CODERATE_DEFAULT;
 	kFESECToneMode			Tone				= (kFESECToneMode) -1;
+
+	// Tuning stuff
+	transponder_t * t;
+
+	
 	//	dvbtune -f 537833 -qam 16 -cr 3_4 
 	//	dvbtune -f 537833 -qam 16 -cr 3_4 -m
 	unsigned int Frequency = 578166667;
@@ -174,14 +189,36 @@ int main (int argc, const char * argv[])
 	g_DVB->Initialize();
 	
 	g_Adapter = g_DVB->GetAdapters()[0];
-	g_Frontend = g_Adapter->GetFrontend();
-
-	//sleep(10);
-	//	dvb_device_open(2, &fedbdev);
-	//	dvb_frontend_open(fedbdev);
-	
-	tune_it(0,Frequency,srate,pol,Tone,SpectralInversion,diseqc,Modulation,HP_CodeRate,TransmissionMode,GuardInterval,Bandwidth);
-
-	sleep(100);
-//	IDVBDVR* m_DVR = m_Adapter->GetDVR();
+	if (g_Frontend != NULL)
+	{
+		g_Frontend = g_Adapter->GetFrontend();
+		
+		//sleep(10);
+		//	dvb_device_open(2, &fedbdev);
+		//	dvb_frontend_open(fedbdev);
+		
+		tune_it(0,Frequency,srate,pol,Tone,SpectralInversion,diseqc,Modulation,HP_CodeRate,TransmissionMode,GuardInterval,Bandwidth);
+		
+		printf("<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>\n<satellite>\n");
+		scan_nit(0x40); /* Get initial list of transponders */
+		scan_nit(0x41); /* Get initial list of transponders */
+		while ((t=get_unscanned(transponders))!=NULL) {
+			free_pat_list();
+			fprintf(stderr,"Scanning %d%c %d\n",t->freq,t->pol,t->srate);
+			tune_it(0,t->freq,t->srate,t->pol,Tone,SpectralInversion,0,Modulation,HP_CodeRate,TransmissionMode,GuardInterval,Bandwidth);
+			printf("<transponder id=\"%d\" onid=\"%d\" freq=\"%05d\" srate=\"%d\" pos=\"%04x\" we_flag=\"%d\" polarity=\"%c\" modulation=\"%d\">\n",t->id,t->onid,t->freq,t->srate,t->pos,t->we_flag,t->pol,t->mod);
+			t->scanned=1;
+			scan_pat();
+			scan_sdt();
+			printf("</transponder>\n");
+			scan_nit(0x40); /* See if there are any new transponders */
+			scan_nit(0x41); /* See if there are any new transponders */
+		}
+		printf("</satellite>\n");
+		
+		sleep(100);
+	} else {
+		printf("No DVB adapters found.\n");
+	}
+	//	IDVBDVR* m_DVR = m_Adapter->GetDVR();
 }

@@ -56,7 +56,6 @@ namespace Dibcom
 {
 	class Dib0700 : public IDVBUSBDevice, public IDVBI2CAdapter
 	{
-		friend class Dib0700I2C;
 		friend class Dib7070P;
 		
 	public:

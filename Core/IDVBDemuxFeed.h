@@ -51,9 +51,7 @@ namespace Video4Mac
 		IDVBDemux*			m_Demux;
 		IDVBDemuxFilter*	m_Filter;
 
-		
-		int					m_CC;
-		int					m_PusiSeen;		/* prevents feeding of garbage from previous section */
+
 		int					m_Type;
 		UInt16				m_PID;
 		int					m_TSType;

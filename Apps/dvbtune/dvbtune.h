@@ -48,6 +48,13 @@ typedef struct _transponder_t {
 	struct _transponder_t* next;
 } transponder_t;
 
+typedef struct _pat_t {
+	int service_id;
+	int pmt_pid;
+	int scanned;
+	struct _pat_t* next;
+} pat_t;
+
 
 extern int tune_it(int fd_sec, 
 			unsigned int freq, unsigned int srate, 
@@ -55,3 +62,14 @@ extern int tune_it(int fd_sec,
 			unsigned int diseqc, kFEModulation modulation,
 			kFECodeRate HP_CodeRate, kFETransmitMode TransmissionMode,
 			kFEGuardInterval guardInterval, kFEBandwidth bandwidth);
+
+extern void scan_pmt(int pid,int sid,int change);
+extern void scan_pat();
+extern int scan_nit(int x);
+extern void scan_sdt();
+extern transponder_t* transponders;
+extern transponder_t transponder;
+extern pat_t* pats;
+
+/* Get the first unscanned transponder (or return NULL) */
+extern transponder_t*  get_unscanned(transponder_t* t);

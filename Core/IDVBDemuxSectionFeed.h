@@ -53,7 +53,11 @@ namespace Video4Mac
 		UInt8*	m_SecBuf;
 		UInt8	m_SecBufBase[DMX_MAX_SECFEED_SIZE];
 		UInt16	m_SecBufP;
+
 		
+		
+		int		m_CC;
+		int		m_PusiSeen;		/* prevents feeding of garbage from previous section */
 		UInt16	m_TSFeedP;
 		
 	private:

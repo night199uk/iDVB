@@ -39,18 +39,12 @@ int num_trans=0;
 
 transponder_t transponder;
 
-typedef struct _pat_t {
-	int service_id;
-	int pmt_pid;
-	int scanned;
-	struct _pat_t* next;
-} pat_t;
 
 pat_t* pats=NULL;
 
 /* Get the first unscanned transponder (or return NULL) */
-transponder_t*  get_unscanned() {
-	transponder_t* t;
+transponder_t*  get_unscanned(transponder_t* t) {
+
 	
 	t=transponders;
 	
@@ -179,6 +173,61 @@ void diseqc_send_msg(struct dvb_device *fd, fe_sec_voltage_t v, struct diseqc_cm
 	return 1;
 }
 */
+
+int get_pmt_pid(int service_id) {
+	pat_t* t=pats;
+	int found=0;
+	
+	while ((!found) && (t!=NULL)) {
+		if (t->service_id==service_id) {
+			found=1;
+		} else {
+			t=t->next;
+		}
+	}
+	
+	if (found) {
+		return(t->pmt_pid);
+	} else {
+		return(0);
+	}
+}
+
+void add_pat(pat_t pat) {
+	pat_t* t;
+	int found;
+	
+	if (pats==NULL) {
+		pats=(pat_t*)malloc(sizeof(pat));
+		
+		pats->service_id=pat.service_id;
+		pats->pmt_pid=pat.pmt_pid;
+		pats->scanned=0;
+		pats->next=NULL;
+	} else {
+		t=pats;
+		found=0;
+		while ((!found) && (t!=NULL)) {
+			if ((t->service_id==pat.service_id)) {
+				found=1;
+			} else {
+				t=t->next;
+			}
+		}
+		
+		if (!found) {
+			t=(pat_t*)malloc(sizeof(pat));
+			
+			t->service_id=pat.service_id;
+			t->pmt_pid=pat.pmt_pid;
+			t->scanned=0;
+			t->next=pats;
+			
+			pats=t;
+		}
+	}
+}
+
 
 void parse_descriptors(int info_len,unsigned char *buf) {
 	int i=0;
@@ -442,7 +491,154 @@ void parse_descriptors(int info_len,unsigned char *buf) {
 			}
         }
 	}
-}
+};
+
+void scan_pat() {
+	int fd_pat;
+	int n,seclen;
+	int i;
+	unsigned char buf[4096];
+	IDVBDmxSctFilterParams sctFilterParams;
+	DVBPollDescriptor ufd;
+	IDVBEventListener listener;
+	IDVBDmxDevFilter* filter;
+	
+	pat_t pat;
+	
+	filter = g_Adapter->GetFilter();
+	sctFilterParams.PID=0x0;
+	memset(&sctFilterParams.Filter,0,sizeof(sctFilterParams.Filter));
+	sctFilterParams.Timeout = 0;
+	sctFilterParams.Flags = DMX_IMMEDIATE_START;
+	sctFilterParams.Filter.Filter[0]=0x0;
+	sctFilterParams.Filter.Mask[0]=0xff;
+	
+	if (filter->IOCtl(DMX_SET_FILTER,&sctFilterParams) < 0) {
+		perror("PAT - DMX_SET_FILTER:");
+		close(fd_pat);
+		return;
+	}
+	
+	ufd.Source=filter;
+	ufd.Events=POLLPRI;
+	if (listener.Poll(&ufd,1,10000) < 0 ) {
+		fprintf(stderr,"TIMEOUT reading from fd_pat\n");
+		close(fd_pat);
+		return;
+	}
+	if (read(fd_pat,buf,3)==3) {
+		seclen=((buf[1] & 0x0f) << 8) | (buf[2] & 0xff);
+		n = read(fd_pat,buf+3,seclen);
+		if (n==seclen) {
+			seclen+=3;
+			//      printf("Read %d bytes - Found %d services\n",seclen,(seclen-11)/4);
+			//    for (i=0;i<seclen+3;i++) { printf("%02x ",buf[i]); }
+			//      printf("<pat>\n");
+			i=8;
+			while (i < seclen-4) {
+				pat.service_id=(buf[i]<<8)|buf[i+1];
+				pat.pmt_pid=((buf[i+2]&0x1f)<<8)|buf[i+3];
+				add_pat(pat);
+				/*        if (service_id!=0) {
+				 scan_pmt(pmt_pid,service_id,(service_id==pnr));
+				 } else {
+				 printf("<service id=\"0\" pmt_pid=\"%d\">\n</service>\n",pmt_pid);
+				 }
+				 */        i+=4;
+			}
+			//      printf("</pat>\n");
+		} else {
+			printf("Under-read bytes for PAT - wanted %d, got %d\n",seclen,n);
+		}
+	} else {
+		fprintf(stderr,"Nothing to read from fd_pat\n");
+	}
+	close(fd_pat);
+};
+
+void scan_sdt() {
+	int fd_sdt;
+	int n,seclen;
+	int i,k;
+	int max_k;
+	unsigned char buf[4096];
+	IDVBDmxSctFilterParams sctFilterParams;
+	int ca,service_id,loop_length;
+	DVBPollDescriptor ufd;
+	IDVBEventListener listener;
+	
+	IDVBDmxDevFilter* filter;
+	filter = g_Adapter->GetFilter();
+	
+	sctFilterParams.PID=0x11;
+	memset(&sctFilterParams.Filter,0,sizeof(sctFilterParams.Filter));
+	sctFilterParams.Timeout = 0;
+	sctFilterParams.Flags = DMX_IMMEDIATE_START;
+	sctFilterParams.Filter.Filter[0]=0x42;
+	sctFilterParams.Filter.Mask[0]=0xff;
+	
+	if (filter->IOCtl(DMX_SET_FILTER,&sctFilterParams) < 0) {
+		perror("SDT - DMX_SET_FILTER:");
+		close(fd_sdt);
+		return;
+	}
+	
+	max_k=1;
+	//  printf("<sdt>\n");
+	
+	for (k=0;k<max_k;k++) {
+		ufd.Source=filter;
+		ufd.Events=POLLPRI;
+		if (listener.Poll(&ufd,1,10000) < 0 ) {
+			fprintf(stderr,"TIMEOUT on read from fd_sdt\n");
+			close(fd_sdt);
+			return;
+		}
+		if (read(fd_sdt,buf,3)==3) {
+			seclen=((buf[1] & 0x0f) << 8) | (buf[2] & 0xff);
+			n = read(fd_sdt,buf+3,seclen);
+			if (n==seclen) {
+				seclen+=3;
+				//      printf("Read %d bytes\n",seclen);
+				//    for (i=0;i<seclen+3;i++) { printf("%02x ",buf[i]); }
+				/*      for (i=0;i< seclen;i++) {
+				 printf("%02x ",buf[i]);
+				 if ((i % 16)==15) {
+				 printf("  ");
+				 for (j=i-15;j<=i;j++) {
+				 printf("%c",((buf[j]>31) && (buf[j]<=127)) ? buf[j] : '.');
+				 }
+				 printf("\n");
+				 }
+				 }
+				 */
+				
+				max_k=buf[7]+1; // last_sec_num - read this many (+1) sections
+				
+				i=11;
+				while (i < (seclen-4)) {
+					service_id=(buf[i]<<8)|buf[i+1];
+					i+=2;
+					i++;  // Skip a field
+					ca=(buf[i]&0x10)>>4;
+					loop_length=((buf[i]&0x0f)<<8)|buf[i+1];
+					printf("<service id=\"%d\" ca=\"%d\">\n",service_id,ca);
+					i+=2;
+					parse_descriptors(loop_length,&buf[i]);
+					i+=loop_length;
+					scan_pmt(get_pmt_pid(service_id),service_id,(service_id==pnr));
+					printf("</service>\n");
+				}
+			}  else {
+				printf("Under-read bytes for SDT - wanted %d, got %d\n",seclen,n);
+			}
+		} else {
+			fprintf(stderr,"Nothing to read from fd_sdt\n");
+		}
+	}
+	//  printf("</sdt>\n");
+	close(fd_sdt);	
+};
 
 int scan_nit(int x) {
 	int fd_nit;

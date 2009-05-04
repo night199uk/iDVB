@@ -18,7 +18,6 @@ IDVBTuner::IDVBTuner()
 	m_TunerInfo.FrequencyMin = 0;
 	m_TunerInfo.FrequencyMax = 0;
 	m_TunerInfo.FrequencyStep = 0;
-	
 	m_TunerInfo.BandwidthMin = 0;
 	m_TunerInfo.BandwidthMax = 0;
 	m_TunerInfo.BandwidthStep = 0;

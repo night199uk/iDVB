@@ -326,7 +326,6 @@ int IDVBDemux::AllocateTSFeed(IDVBDemuxTSFeed **feed, IDVBDemuxTSFeedCallback ca
 	(*feed)->m_PESLen = 0xfffa;
 	(*feed)->m_Buffer = NULL;
 	
-//	(*feed)->m_Parent = dmx;
 	(*feed)->m_Priv = NULL;
 	(*feed)->m_IsFiltering = 0;
 	

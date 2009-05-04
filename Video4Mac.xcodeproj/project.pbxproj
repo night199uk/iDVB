@@ -140,8 +140,6 @@
 		AEB48B1A0F8AA8AC00E144A4 /* IDVBDemod.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IDVBDemod.cpp; path = ../USB/IDVBDemod.cpp; sourceTree = "<group>"; };
 		AEB48B280F8AAEA700E144A4 /* IDVBI2CClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDVBI2CClient.h; sourceTree = "<group>"; };
 		AEB48B290F8AAEA700E144A4 /* IDVBI2CClient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IDVBI2CClient.cpp; sourceTree = "<group>"; };
-		AEC632440F8157DA00C7295C /* Dib0700-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Dib0700-Info.plist"; sourceTree = "<group>"; };
-		AEC633000F815F9500C7295C /* MT2266-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MT2266-Info.plist"; sourceTree = "<group>"; };
 		AEC635C60F84040200C7295C /* DVBUSB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DVBUSB.h; path = ../Core/DVBUSB.h; sourceTree = "<group>"; };
 		AEC635C70F84040200C7295C /* DVBUSB.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DVBUSB.cpp; path = ../Core/DVBUSB.cpp; sourceTree = "<group>"; };
 		AEC636820F84070A00C7295C /* Dibcom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dibcom.h; sourceTree = "<group>"; };
@@ -197,8 +195,6 @@
 				0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */,
 				034768DFFF38A50411DB9C8B /* Products */,
 				AE8FDEFA0F76ACF000088907 /* IOKit.framework */,
-				AEC632440F8157DA00C7295C /* Dib0700-Info.plist */,
-				AEC633000F815F9500C7295C /* MT2266-Info.plist */,
 			);
 			name = Video4Mac;
 			sourceTree = "<group>";

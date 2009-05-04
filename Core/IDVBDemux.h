@@ -101,7 +101,6 @@ namespace Video4Mac
 		DMX_TS_PES_OTHER
 	} kDVBDmxTSPES;
 
-	
 	typedef struct IDVBDemuxFilter {
 		IDVBDmxSectionFilter Filter;
 		UInt8 MaskAndMode[DMX_MAX_FILTER_SIZE];
@@ -127,7 +126,6 @@ namespace Video4Mac
 		DMX_FIFO_ERROR, /* Receiver FIFO overrun */
 		DMX_MISSED_ERROR /* Receiver missed packet */
 	} kDVBDemuxSuccess;
-	
 	
 	typedef int (*IDVBDemuxSectionFeedCallback) (const UInt8 * buffer1,
 												 size_t buffer1_len,
