@@ -8,6 +8,8 @@
  */
 
 #include "IDVBDemuxSectionFeed.h"
+#include "IDVBDmxDevFilter.h"
+
 using namespace Video4Mac;
 
 #define CRCPOLY_BE 0x04c11db7
@@ -73,8 +75,8 @@ int IDVBDemuxSectionFeed::SWFilterSectionFilter(IDVBDemuxFilter *f)
 	if (f->DoneQ && !neq)
 		return 0;
 	
-	return m_Callback(m_SecBuf, m_SecLen,
-					 NULL, 0, &f->Filter, DMX_OK);
+	return m_DmxFilter->SectionCallback(m_SecBuf, m_SecLen, NULL, 0, &f->Filter, DMX_OK);
+//	return m_Callback(m_SecBuf, m_SecLen, NULL, 0, &f->Filter, DMX_OK);
 }
 
 
@@ -313,15 +315,13 @@ int IDVBDemuxSectionFeed::AllocateFilter(IDVBDmxSectionFilter **filter)
 
 int IDVBDemuxSectionFeed::Set(UInt16 pid, size_t circular_buffer_size, int check_crc)
 {
-	struct IDVBDemux *dvbdmx = m_Demux;
-	
 	if (pid > 0x1fff)
 		return -EINVAL;
 	
-	if (pthread_mutex_lock(&dvbdmx->m_Mutex))
+	if (pthread_mutex_lock(&m_Demux->m_Mutex))
 		return -EINVAL; // -ERESTARTSYS;
-	
-//	dvb_demux_feed_add(dvbdmxfeed);
+
+	m_Demux->FeedAdd(this);
 	
 	m_PID = pid;
 	m_BufferSize = circular_buffer_size;
@@ -332,13 +332,13 @@ int IDVBDemuxSectionFeed::Set(UInt16 pid, size_t circular_buffer_size, int check
 #else
 	m_Buffer = (UInt8 *)malloc(m_BufferSize);
 	if (!m_Buffer) {
-		pthread_mutex_unlock(&dvbdmx->m_Mutex);
+		pthread_mutex_unlock(&m_Demux->m_Mutex);
 		return -ENOMEM;
 	}
 #endif
 	
 	m_State = DMX_STATE_READY;
-	pthread_mutex_unlock(&dvbdmx->m_Mutex);
+	pthread_mutex_unlock(&m_Demux->m_Mutex);
 	return 0;
 }
 
@@ -438,7 +438,8 @@ int IDVBDemuxSectionFeed::StopFiltering()
 
 int IDVBDemuxSectionFeed::ReleaseFilter(IDVBDmxSectionFilter *filter)
 {
-	IDVBDemuxFilter *dvbdmxfilter = (IDVBDemuxFilter *)filter, *f;
+	IDVBDemuxFilter *dvbdmxfilter = (IDVBDemuxFilter *)filter;
+	IDVBDemuxFilter *f;
 	IDVBDemux *dvbdmx = m_Demux;
 	
 	pthread_mutex_lock(&dvbdmx->m_Mutex);

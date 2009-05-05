@@ -165,12 +165,24 @@ namespace Video4Mac
 		// API Functions that might be subclassed
 		virtual int		StartFeed(IDVBDemuxFeed* dvbdmxfeed) = 0;
 		virtual int		StopFeed(IDVBDemuxFeed* dvbdmxfeed) = 0;
+		
 		virtual int		WriteToDecoder(IDVBDemuxFeed* dvbdmxfeed, const UInt8 *buf, ssize_t count) { return -EINVAL; }
+
+
+		
+		void			SWFilter(const UInt8 *buf, size_t count);
+		
+		// Feed management
 		int				AllocateTSFeed(IDVBDemuxTSFeed **feed, IDVBDemuxTSFeedCallback callback);
 		int				ReleaseTSFeed(IDVBDemuxTSFeed *feed);
-		void			SWFilter(const UInt8 *buf, size_t count);
+		
 		int				AllocateSectionFeed(IDVBDemuxSectionFeed **feed, IDVBDemuxSectionFeedCallback callback);
 		int				ReleaseSectionFeed(IDVBDemuxSectionFeed *feed);
+		
+		void			FeedAdd(IDVBDemuxFeed *feed);
+		void			FeedDel(IDVBDemuxFeed *feed);
+		int				FeedFind(IDVBDemuxFeed *feed);
+		
 		
 	private:
 		void			SWFilterPacket(const UInt8 *buf);
@@ -186,7 +198,7 @@ namespace Video4Mac
 		int					m_Users;
 		IDVBDemuxFilter*	m_Filter;
 		
-		std::vector<IDVBFrontend *>	m_FrontendList;
+//		std::vector<IDVBFrontend *>	m_FrontendList;
 		
 		int					m_Playing;
 		int					m_Recording;

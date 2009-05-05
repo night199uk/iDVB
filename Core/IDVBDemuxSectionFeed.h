@@ -43,7 +43,6 @@ namespace Video4Mac
 
 	protected:
 		UInt16	m_SecLen;
-		IDVBDemuxSectionFeedCallback	m_Callback;
 		//		struct dmx_demux* parent; /* Back-pointer */
 		//		void* priv; /* Pointer to private data of the API client */
 		

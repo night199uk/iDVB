@@ -13,6 +13,7 @@
 #include <IDVBDmxDevFilter.h>
 #include <IDVBDemuxTSFeed.h>
 #include <CDVBLog.h>
+#include <algorithm>
 
 using namespace Video4Mac;
 
@@ -135,8 +136,6 @@ void IDVBDemux::SWFilterPacket(const UInt8 *buf)
 	//	list_for_each_entry(feed, &demux->feed_list, list_head) {
 	//		if ((feed->pid != pid) && (feed->pid != 0x2000))
 	//			continue;
-	if (pid == 0)
-		fprintf(stderr, "going to search for feeds, pid == %d, feedlist contains %d entries.\n", pid, m_FeedList.size());
 	
 	for (int i = 0; i < m_FeedList.size(); i++)
 	{
@@ -317,8 +316,6 @@ int IDVBDemux::AllocateTSFeed(IDVBDemuxTSFeed **feed, IDVBDemuxTSFeedCallback ca
 		return -EBUSY;
 	}
 
-	m_FeedList.push_back(*feed);
-	
 	(*feed)->m_Type = DMX_TYPE_TS;
 	(*feed)->m_Callback = callback;
 	(*feed)->m_Demux = this;
@@ -361,6 +358,7 @@ int IDVBDemux::ReleaseTSFeed(IDVBDemuxTSFeed *feed)
 	feed->m_State = DMX_STATE_FREE;
 	feed->m_Filter->State = DMX_STATE_FREE;
 	
+	FeedDel(feed);
 //	dvb_demux_feed_del(feed);
 	
 	feed->m_PID = 0xffff;
@@ -384,9 +382,9 @@ int IDVBDemux::AllocateSectionFeed(IDVBDemuxSectionFeed **feed,
 		pthread_mutex_unlock(&m_Mutex);
 		return -EBUSY;
 	}
-	
+
 	(*feed)->m_Type = DMX_TYPE_SEC;
-	(*feed)->m_Callback = callback;
+//	(*feed)->m_Callback = callback;
 	(*feed)->m_Demux = this;
 	(*feed)->m_PID = 0xffff;
 	(*feed)->m_SecBuf = (*feed)->m_SecBufBase;
@@ -405,10 +403,9 @@ int IDVBDemux::AllocateSectionFeed(IDVBDemuxSectionFeed **feed,
 
 int IDVBDemux::ReleaseSectionFeed(IDVBDemuxSectionFeed *feed)
 {
-	IDVBDemuxFeed *dvbdmxfeed = (IDVBDemuxFeed *)feed;
 	pthread_mutex_lock(&m_Mutex);
 	
-	if (dvbdmxfeed->GetState() == DMX_STATE_FREE) {
+	if (feed->GetState() == DMX_STATE_FREE) {
 		pthread_mutex_unlock(&m_Mutex);
 		return -EINVAL;
 	}
@@ -416,8 +413,9 @@ int IDVBDemux::ReleaseSectionFeed(IDVBDemuxSectionFeed *feed)
 //	delete dvbdmxfeed->m_Buffer;
 //	dvbdmxfeed->buffer = NULL;
 #endif
-	dvbdmxfeed->SetState(DMX_STATE_FREE);
+	feed->SetState(DMX_STATE_FREE);
 	
+	FeedDel(feed);
 //	FeedDel(dvbdmxfeed);
 	
 //	dvbdmxfeed->pid = 0xffff;
@@ -426,6 +424,50 @@ int IDVBDemux::ReleaseSectionFeed(IDVBDemuxSectionFeed *feed)
 	return 0;
 }
 
+
+void	IDVBDemux::FeedAdd(IDVBDemuxFeed *feed)
+{
+//	spin_lock_irq(&feed->demux->lock);
+    if (FeedFind(feed)) {
+		CDVBLog::Log(kDVBLogDemux, "%s: feed already in list (type=%x state=%x pid=%x)\n", __func__, feed->GetType(), feed->GetState(), feed->GetPID());
+        goto out;
+    }
+	
+	m_FeedList.push_back(feed);
+	
+//    list_add(&feed->list_head, &feed->demux->feed_list);
+out:
+//    spin_unlock_irq(&feed->demux->lock);
+	;
+}
+
+void	IDVBDemux::FeedDel(IDVBDemuxFeed *feed)
+{
+//	spin_lock_irq(&feed->demux->lock);
+
+	
+	vector<IDVBDemuxFeed *>::iterator iter;
+	iter = find(m_FeedList.begin(), m_FeedList.end(), feed);
+	if (iter != m_FeedList.end())
+	{
+		m_FeedList.erase(iter);
+	} else {
+		CDVBLog::Log(kDVBLogDemux, "%s: feed not in list (type=%x state=%x pid=%x)\n", __func__, feed->GetType(), feed->GetState(), feed->GetPID());
+	}
+
+	//    spin_unlock_irq(&feed->demux->lock);
+};
+
+
+int		IDVBDemux::FeedFind(IDVBDemuxFeed *feed)
+{
+	if (find(m_FeedList.begin(), m_FeedList.end(), feed) != m_FeedList.end())
+	{
+		return 1;
+	}
+	
+	return 0;
+}
 
 /*
 struct dmx_frontend *IDVBDemux::GetFE(struct dmx_demux *demux, int type)

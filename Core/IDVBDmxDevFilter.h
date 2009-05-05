@@ -11,6 +11,7 @@
 #include <Video4Mac/IDVBDmxPublic.h>
 #include <Video4Mac/IDVBDemux.h>
 #include <Video4Mac/IDVBEvent.h>
+#include <Video4Mac/IDVBPrimitives.h>
 
 #define DMX_START				41
 #define DMX_STOP				42
@@ -52,10 +53,8 @@ namespace Video4Mac
 
 		virtual void			SetAdapter(IDVBAdapter*		Adapter)		{ m_Adapter = Adapter; }
 		virtual IDVBAdapter*	GetAdapter(void)							{ return m_Adapter;	}
-	
 		
 		void			Initialize();
-		
 		
 		void			SetState(kDVBDmxDevState state) { m_State = state; };
 		kDVBDmxDevState	GetState()						{ return m_State; }
@@ -72,21 +71,21 @@ namespace Video4Mac
 										const UInt8 *buffer2, size_t buffer2_len,
 										IDVBDmxSectionFilter *filter,
 										kDVBDemuxSuccess success);
+
+		ssize_t			Read(char *buf, size_t count, long long *ppos);
 		int				Free();
 		
 	private:
-
+		ssize_t			ReadSec(char  *buf, size_t count, long long *ppos);
 		int				SetBufferSize(unsigned long size);
 		inline void		StateSet(int state);
 		void			Timeout(unsigned long data);
 		void			Timer();
-		ssize_t			Read(char /* __user */ *buf, size_t count, long long *ppos);
+
 		unsigned int	Poll(IDVBCondition *Condition);
 		int				FeedStop();
 		int				FeedStart();
 		int				FeedRestart();
-
-		
 
 		int				Set(IDVBDmxSctFilterParams *params);
 		int				PESFilterSet(IDVBDmxPESFilterParams *params);
@@ -107,7 +106,7 @@ namespace Video4Mac
 		kDVBDmxDevType			m_Type;
 		kDVBDmxDevState			m_State;
 		CDVBRingBuffer*			m_Buffer;
-		
+		IDVBWaitQueue			m_WaitQueue;
 		pthread_mutex_t			m_Mutex;
 		
 		/* only for sections */

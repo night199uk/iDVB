@@ -15,7 +15,7 @@
 #include <IDVBDemuxTSFeed.h>
 #include <IDVBDemuxSectionFeed.h>
 #include <pthread.h>
-
+#include <poll.h>
 
 using namespace Video4Mac;
 
@@ -30,6 +30,7 @@ void IDVBDmxDevFilter::Initialize()
 	m_Type = DMXDEV_TYPE_NONE;
 	StateSet(DMXDEV_STATE_ALLOCATED);
 	m_Feed = NULL;
+	m_Todo = 0;
 }
 
 IDVBDmxDevFilter::~IDVBDmxDevFilter()
@@ -80,6 +81,43 @@ void IDVBDmxDevFilter::Timer()
 	//	}
 }
 
+ssize_t IDVBDmxDevFilter::ReadSec(char  *buf, size_t count, long long *ppos)
+{
+    int result, hcount;
+    int done = 0;
+	
+    if (m_Todo <= 0) {
+        hcount = 3 + m_Todo;
+        if (hcount > count)
+            hcount = count;
+        result = m_Buffer->BufferRead(/* file->f_flags & O_NONBLOCK */ 1, buf, hcount, ppos);
+        if (result < 0) {
+            m_Todo = 0;
+            return result;
+        }
+        memcpy(m_SecHeader - m_Todo, buf, result);
+
+        buf += result;
+        done = result;
+        count -= result;
+        m_Todo -= result;
+        if (m_Todo > -3)
+			return done;
+        m_Todo = ((m_SecHeader[1] << 8) | m_SecHeader[2]) & 0xfff;
+        if (!count)
+            return done;
+    }
+    if (count > m_Todo)
+        count = m_Todo;
+	
+    result = m_Buffer->BufferRead(/* file->f_flags & O_NONBLOCK */ 1, buf, count, ppos);
+    if (result < 0)
+        return result;
+    m_Todo -= result;
+    return (result + done);
+}
+
+
 ssize_t IDVBDmxDevFilter::Read(char /* __user */ *buf, size_t count, long long *ppos)
 {
 	int ret;
@@ -87,11 +125,14 @@ ssize_t IDVBDmxDevFilter::Read(char /* __user */ *buf, size_t count, long long *
 	if (pthread_mutex_lock(&m_Mutex))
 		return -EINTR;
 	
-	/*	if (dmxdevfilter->type == DMXDEV_TYPE_SEC)
-	 ret = dvb_dmxdev_read_sec(dmxdevfilter, file, buf, count, ppos);
-	 else*/
-	ret = m_Buffer->BufferRead(/*file->f_flags & O_NONBLOCK*/ 1,
-					buf, count, ppos);
+	if (m_Type == DMXDEV_TYPE_SEC)
+	{
+		ret = ReadSec(buf, count, ppos);
+	}
+	else
+	{
+		ret = m_Buffer->BufferRead(/*file->f_flags & O_NONBLOCK*/ 1, buf, count, ppos);
+	}
 	
 	pthread_mutex_unlock(&m_Mutex);
 	return ret;
@@ -134,6 +175,8 @@ int IDVBDmxDevFilter::FeedRestart()
 	filter->dev->demux->release_section_feed(dmxdev->demux,
 											 filter->feed.sec);
 */	
+//	m_Demux->ReleaseSectionFeed(m_Filter->Sec);
+	
 	return 0;
 }
 
@@ -153,6 +196,7 @@ int IDVBDmxDevFilter::Stop()
 			FeedStop();
 			if (m_Filter.Sec)
 				Sec->ReleaseFilter(m_Filter.Sec);
+			m_Demux->ReleaseSectionFeed((IDVBDemuxSectionFeed *)m_Feed);
 			FeedRestart();
 			m_Feed = NULL;
 			break;
@@ -160,8 +204,7 @@ int IDVBDmxDevFilter::Stop()
 			if (!TS)
 				break;
 			FeedStop();
-//			m_DmxDev->ReleaseTSFeed(dmxdevfilter->dev->demux,
-//							dmxdevfilter->feed.ts);
+			m_Demux->ReleaseTSFeed((IDVBDemuxTSFeed *)m_Feed);
 			m_Feed = NULL;
 			break;
 		default:
@@ -184,46 +227,6 @@ int IDVBDmxDevFilter::Reset()
 	return 0;
 }
 
-
-static int dvb_dmxdev_section_callback(const UInt8 *buffer1, size_t buffer1_len,
-									   const UInt8 *buffer2, size_t buffer2_len,
-									   IDVBDmxSectionFilter *filter,
-									   kDVBDemuxSuccess success)
-{
-	
-	fprintf(stderr, "section stream callback called.\n");
-/*
-	IDVBDmxDevFilter *dmxdevfilter = (IDVBDmxDevFilter *) filter->priv;
-	int ret;
-	
-	if (dmxdevfilter->m_Buffer.error) {
-		//		wake_up(&dmxdevfilter->buffer.queue);
-		return 0;
-	}
-	//	spin_lock(&dmxdevfilter->dev->lock);
-	if (dmxdevfilter->GetState() != DMXDEV_STATE_GO) {
-		//		spin_unlock(&dmxdevfilter->dev->lock);
-		return 0;
-	}
-	//	del_timer(&dmxdevfilter->timer);
-	CDVBLog::Log(kDVBLogDemux, "dmxdev: section callback %02x %02x %02x %02x %02x %02x\n",
-			buffer1[0], buffer1[1],
-			buffer1[2], buffer1[3], buffer1[4], buffer1[5]);
-	ret = dmxdevfilter->m_Buffer->BufferWrite(buffer1, buffer1_len);
-	if (ret == buffer1_len) {
-		ret = dmxdevfilter->m_Buffer->BufferWrite(buffer2, buffer2_len);
-	}
-	if (ret < 0) {
-		dmxdevfilter->m_Buffer->Flush();
-		dmxdevfilter->buffer.error = ret;
-	}
-	if (dmxdevfilter->params.sec.flags & DMX_ONESHOT)
-		dmxdevfilter->state = DMXDEV_STATE_DONE;
-	//	spin_unlock(&dmxdevfilter->dev->lock);
-	//	wake_up(&dmxdevfilter->buffer.queue);
-	return 0;
-*/
-}
 
 int	IDVBDmxDevFilter::TSCallback(const UInt8 *buffer1, size_t buffer1_len,
 						   const UInt8 *buffer2, size_t buffer2_len,
@@ -263,16 +266,49 @@ int	IDVBDmxDevFilter::TSCallback(const UInt8 *buffer1, size_t buffer1_len,
 //		buffer->error = ret;
 	}
 	//	spin_unlock(&dmxdevfilter->dev->lock);
-	//	wake_up(&buffer->queue);
+	m_WaitQueue.SignalAll();
 	return 0;
 }
+
+
 int	IDVBDmxDevFilter::SectionCallback(const UInt8 *buffer1, size_t buffer1_len,
-								const UInt8 *buffer2, size_t buffer2_len,
-								IDVBDmxSectionFilter *filter,
-								kDVBDemuxSuccess success)
+									  const UInt8 *buffer2, size_t buffer2_len,
+									  IDVBDmxSectionFilter *filter,
+									  kDVBDemuxSuccess success)
 {
+	int ret;
+
+	if (m_Buffer->Error()) {
+		m_WaitQueue.SignalAll();
+		return 0;
+	}
+	//	spin_lock(&dmxdevfilter->dev->lock);
+
+	if (m_State != DMXDEV_STATE_GO) {
+		//		spin_unlock(&dmxdevfilter->dev->lock);
+		return 0;
+	}
+
+	//	del_timer(&dmxdevfilter->timer);
+	CDVBLog::Log(kDVBLogDemux, "dmxdev: section callback %02x %02x %02x %02x %02x %02x\n", buffer1[0], buffer1[1], buffer1[2], buffer1[3], buffer1[4], buffer1[5]);
 	
+	ret = m_Buffer->BufferWrite(buffer1, buffer1_len);
+	if (ret == buffer1_len)
+		ret = m_Buffer->BufferWrite(buffer2, buffer2_len);
+	
+	if (ret < 0) {
+		m_Buffer->Flush();
+//		m_Buffer.m_Error = ret;
+	}
+	
+	if (m_Params.Sec.Flags & DMX_ONESHOT)
+		m_State = DMXDEV_STATE_DONE;
+	
+	//	spin_unlock(&dmxdevfilter->dev->lock);
+	m_WaitQueue.SignalAll();
+	return 0;
 }
+
 int IDVBDmxDevFilter::Start()
 {
 	void *mem;
@@ -321,7 +357,7 @@ int IDVBDmxDevFilter::Start()
 			
 			/* if no feed found, try to allocate new one */
 			if (!*secfeed) {
-				ret = m_Demux->AllocateSectionFeed(secfeed, dvb_dmxdev_section_callback);
+				ret = m_Demux->AllocateSectionFeed(secfeed, NULL);
 				if (ret < 0) {
 					CDVBLog::Log(kDVBLogDemux, "DVB (%s): could not alloc feed\n", __func__);
 					return ret;
@@ -337,6 +373,8 @@ int IDVBDmxDevFilter::Start()
 				FeedStop();
 			}
 			
+			(*secfeed)->m_DmxFilter = this;
+
 			ret = (*secfeed)->AllocateFilter(secfilter);
 			if (ret < 0) {
 				FeedRestart();
@@ -431,8 +469,6 @@ static inline void invert_mode(IDVBDmxFilter *filter)
 		filter->Mode[i] ^= 0xff;
 }
 
-
-
 int IDVBDmxDevFilter::Set(IDVBDmxSctFilterParams *params)
 {
 	CDVBLog::Log(kDVBLogDemux, "function : %s\n", __func__);
@@ -440,8 +476,7 @@ int IDVBDmxDevFilter::Set(IDVBDmxSctFilterParams *params)
 	Stop();
 	
 	m_Type = DMXDEV_TYPE_SEC;
-	memcpy(&m_Params.Sec,
-	       params, sizeof(IDVBDmxSctFilterParams));
+	memcpy(&m_Params.Sec, params, sizeof(IDVBDmxSctFilterParams));
 	invert_mode(&m_Params.Sec.Filter);
 	StateSet(DMXDEV_STATE_SET);
 	
@@ -458,18 +493,18 @@ int IDVBDmxDevFilter::PESFilterSet(IDVBDmxPESFilterParams *params)
 	
 	if (params->PESType > kDVBDmxPESOther || params->PESType < 0)
 	{
+
 		return -EINVAL;
 	}
 	
 	m_Type = DMXDEV_TYPE_PES;
-	memcpy(&m_Params, params, sizeof(IDVBDmxPESFilterParams));
+	// Huh? Add .PES below for some reason
+	memcpy(&m_Params.PES, params, sizeof(IDVBDmxPESFilterParams));
 	
 	StateSet(DMXDEV_STATE_SET);
 	
 	if (params->Flags & DMX_IMMEDIATE_START)
-	{
 		return Start();
-	}
 
 	return 0;
 }
@@ -582,26 +617,23 @@ int IDVBDmxDevFilter::IOCtl(unsigned int cmd, void *parg)
 
 unsigned int IDVBDmxDevFilter::Poll(IDVBCondition *Condition)
 {
-	//	struct dmxdev_filter *dmxdevfilter = file->private_data;
 	unsigned int mask = 0;
-	
-	PollWait(Condition);
-	//	poll_wait(file, &dmxdevfilter->buffer.queue, wait);
+
+	m_WaitQueue.Add(Condition);
 	
 	if (m_State != DMXDEV_STATE_GO &&
 	    m_State != DMXDEV_STATE_DONE &&
 	    m_State != DMXDEV_STATE_TIMEDOUT)
 		return 0;
 	
-	//	if (dmxdevfilter->buffer.error)
-	//		mask |= (POLLIN | POLLRDNORM | POLLPRI | POLLERR);
+	if (m_Buffer->Error())
+		mask |= (POLLIN | POLLRDNORM | POLLPRI | POLLERR);
 	
-	//	if (!dvb_ringbuffer_empty(&dmxdevfilter->buffer))
-	//		mask |= (POLLIN | POLLRDNORM | POLLPRI);
+	if (!m_Buffer->Empty())
+		mask |= (POLLIN | POLLRDNORM | POLLPRI);
 	
 	return mask;
 }
-
 
 int IDVBDmxDevFilter::Free()
 {

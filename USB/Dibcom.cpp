@@ -207,7 +207,7 @@ int Dib0700::ControlWrite(UInt8 *tx, UInt8 txlen)
 	if (err != kIOReturnSuccess || req.wLenDone != txlen)
 		CDVBLog::Log(kDVBLogAdapter, "ep 0 write error (err = %d, len: %d)\n",err,txlen);
 	
-	return err == kIOReturnSuccess ? req.wLenDone : 0;
+	return err != kIOReturnSuccess ? err : 0;
 }
 
 
@@ -247,7 +247,7 @@ int Dib0700::ControlRead(UInt8 *tx, UInt8 txlen, UInt8 *rx, UInt8 rxlen)
 	
 	debug_dump(rx, rxlen, kDVBLogUSB, true);
 	
-	return err == kIOReturnSuccess ? req.wLenDone : 0; /* length in case of success */
+	return err != kIOReturnSuccess ? err : req.wLenDone;
 }
 
 
@@ -403,7 +403,7 @@ int Dib7070P::StreamingControl(int onoff)
 	
 	b[3] = 0x00;
 	
-	fprintf(stderr, "modifying (%d) streaming state for %d\n", onoff, m_Id);
+	CDVBLog::Log(kDVBLogDevice, "modifying (%d) streaming state for %d\n", onoff, m_Id);
 	
 	if (onoff)
 		st->m_ChannelState |=   1 << m_Id;
@@ -412,12 +412,9 @@ int Dib7070P::StreamingControl(int onoff)
 	
 	b[2] |= st->m_ChannelState;
 	
-	fprintf(stderr, "data for streaming: %x %x\n",b[1],b[2]);
-	ret = st->ControlWrite(b, 4);
-	if (ret)
-		m_Feedcount++;
+	CDVBLog::Log(kDVBLogDevice, "data for streaming: %x %x\n",b[1],b[2]);
 	
-	return ret;
+	return st->ControlWrite(b, 4);
 }
 
 int Dib7070P::Initialize()

@@ -43,6 +43,12 @@ typedef struct _transponder_t {
 	int we_flag;
 	char pol;
 	int mod;
+	int bandwidth;
+	int otherfreq;
+	long constellation;
+	long coderateHP;
+	long coderateLP;
+	long transmissionMode;
 	
 	int scanned;
 	struct _transponder_t* next;

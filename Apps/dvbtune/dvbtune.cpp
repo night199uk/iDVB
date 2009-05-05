@@ -239,9 +239,14 @@ void parse_descriptors(int info_len,unsigned char *buf) {
 	while (i < info_len) {
         descriptor_tag=buf[i++];
         descriptor_length=buf[i++];
-		//        printf("Found descriptor: 0x%02x - length %02d\n",descriptor_tag,descriptor_length);
+		// printf("Found descriptor: 0x%02x - length %02d\n",descriptor_tag,descriptor_length);
         while (descriptor_length > 0) {
 			switch(descriptor_tag) {
+				case 0x02: // video_stream_descriptor
+					printf("<video_info tag=\"0x03\" info=\"%02x\" />\n",buf[i]);
+					i+=descriptor_length;
+					descriptor_length=0;
+					break;
 				case 0x03: // audio_stream_descriptor
 					printf("<audio_info tag=\"0x03\" info=\"%02x\" />\n",buf[i]);
 					i+=descriptor_length;
@@ -323,20 +328,20 @@ void parse_descriptors(int info_len,unsigned char *buf) {
 					break;
 					
 				case 0x40: // network_name
-					//             printf("<network_name tag=\"0x40\">");
+					             printf("<network_name tag=\"0x40\">");
 					j=descriptor_length;
 					while(j > 0) {
-						//               printf("%c",buf[i++]);
+					               printf("%c",buf[i++]);
 						j--;
 					}
 					descriptor_length=0;
-					//             printf("</network_name>\n");
+					             printf("</network_name>\n");
 					break;
 					
 				case 0x41: // service_list
 					//             printf("<services tag=\"0x41\" n=\"%d\">\n",descriptor_length/3);
 					while (descriptor_length > 0) {
-						//               printf("<service id=\"%d\" type=\"%d\" />\n",(buf[i]<<8)|buf[i+1],buf[i+2]);
+					//	               printf("<service id=\"%d\" type=\"%d\" />\n",(buf[i]<<8)|buf[i+1],buf[i+2]);
 						i+=3;
 						descriptor_length-=3;
 					}
@@ -460,6 +465,22 @@ void parse_descriptors(int info_len,unsigned char *buf) {
 					descriptor_length=0;
 					break;
 					
+				case 0x5a: // terrestrial_delivery_system
+					transponder.freq=(unsigned int)((buf[i]<<24)|(buf[i+1]<<16)|(buf[i+2]<<8)|buf[i+3])/100;
+					i+=4;
+					transponder.bandwidth=(buf[i]>>5)&0x3;
+					i+=1;
+					transponder.constellation=(buf[i]>>6)&0x3;
+					transponder.coderateHP=buf[i] & 0x7;
+					i+=1;
+					transponder.coderateLP=(buf[i] >> 5) & 0x7;
+					transponder.transmissionMode = buf[i] & 0x2;
+					i++;
+					descriptor_length=0;
+					add_transponder(transponder);
+					printf("<terrestrial_delivery tag=\"0x5a\" freq=\"%05d\" bandwidth=\"%d\" constellation=\"%04x\" coderateHP=\"%d\" coderateLP=\"%d\" transmissionMode=\"%d\" />\n",transponder.freq,transponder.bandwidth,transponder.constellation,transponder.coderateHP,transponder.coderateLP,transponder.transmissionMode);
+					break;
+					
 				case 0x6a:
 					printf("<ac3_descriptor tag=\"0x6a\" data=\"");
 					for (j=0;j<descriptor_length;j++) printf("%02x",buf[i+j]);
@@ -480,11 +501,11 @@ void parse_descriptors(int info_len,unsigned char *buf) {
 					break;
 					
 				default:
-					printf("<descriptor tag=\"0x%02x\" data=\"",descriptor_tag);
+					//printf("<descriptor tag=\"0x%02x\" data=\"",descriptor_tag);
 					for (j=0;j<descriptor_length;j++) printf("%02x",buf[i+j]);
-					printf("\" text=\"");
+					//printf("\" text=\"");
 					for (j=0;j<descriptor_length;j++) printf("%c",(isalnum(buf[i+j]) ? buf[i+j] : '.'));
-					printf("\" />\n");
+					//printf("\" />\n");
 					i+=descriptor_length;
 					descriptor_length=0;
 					break;
@@ -515,7 +536,7 @@ void scan_pat() {
 	
 	if (filter->IOCtl(DMX_SET_FILTER,&sctFilterParams) < 0) {
 		perror("PAT - DMX_SET_FILTER:");
-		close(fd_pat);
+		g_Adapter->Release(filter);
 		return;
 	}
 	
@@ -523,12 +544,12 @@ void scan_pat() {
 	ufd.Events=POLLPRI;
 	if (listener.Poll(&ufd,1,10000) < 0 ) {
 		fprintf(stderr,"TIMEOUT reading from fd_pat\n");
-		close(fd_pat);
+		g_Adapter->Release(filter);
 		return;
 	}
-	if (read(fd_pat,buf,3)==3) {
+	if (filter->Read((char *)buf, 3, 0)==3) {
 		seclen=((buf[1] & 0x0f) << 8) | (buf[2] & 0xff);
-		n = read(fd_pat,buf+3,seclen);
+		n = filter->Read((char *)buf+3, seclen, 0);
 		if (n==seclen) {
 			seclen+=3;
 			//      printf("Read %d bytes - Found %d services\n",seclen,(seclen-11)/4);
@@ -553,7 +574,7 @@ void scan_pat() {
 	} else {
 		fprintf(stderr,"Nothing to read from fd_pat\n");
 	}
-	close(fd_pat);
+	g_Adapter->Release(filter);
 };
 
 void scan_sdt() {
@@ -579,7 +600,8 @@ void scan_sdt() {
 	
 	if (filter->IOCtl(DMX_SET_FILTER,&sctFilterParams) < 0) {
 		perror("SDT - DMX_SET_FILTER:");
-		close(fd_sdt);
+		g_Adapter->Release(filter);
+//		close(fd_sdt);
 		return;
 	}
 	
@@ -591,12 +613,12 @@ void scan_sdt() {
 		ufd.Events=POLLPRI;
 		if (listener.Poll(&ufd,1,10000) < 0 ) {
 			fprintf(stderr,"TIMEOUT on read from fd_sdt\n");
-			close(fd_sdt);
+			g_Adapter->Release(filter);
 			return;
 		}
-		if (read(fd_sdt,buf,3)==3) {
+		if (filter->Read((char *) buf,3, 0)==3) {
 			seclen=((buf[1] & 0x0f) << 8) | (buf[2] & 0xff);
-			n = read(fd_sdt,buf+3,seclen);
+			n = filter->Read((char *)buf+3, seclen, 0);
 			if (n==seclen) {
 				seclen+=3;
 				//      printf("Read %d bytes\n",seclen);
@@ -637,7 +659,7 @@ void scan_sdt() {
 		}
 	}
 	//  printf("</sdt>\n");
-	close(fd_sdt);	
+	g_Adapter->Release(filter);
 };
 
 int scan_nit(int x) {
@@ -662,7 +684,7 @@ int scan_nit(int x) {
 	
 	if (filter->IOCtl(DMX_SET_FILTER,&sctFilterParams) < 0) {
 		perror("NIT - DMX_SET_FILTER:");
-		close(fd_nit);
+		g_Adapter->Release(filter);
 		return -1;
 	}
 	
@@ -670,18 +692,18 @@ int scan_nit(int x) {
 	ufd.Events=POLLPRI;
 	if (listener.Poll(&ufd,1,10000) < 0 ) {
 		fprintf(stderr,"TIMEOUT on read from fd_nit\n");
-		close(fd_nit);
+		g_Adapter->Release(filter);
 		return -1;
 	}
-	if (read(fd_nit,buf,3)==3) {
+	if (filter->Read((char *)buf,3, 0)==3) {
 		seclen=((buf[1] & 0x0f) << 8) | (buf[2] & 0xff);
-		n = read(fd_nit,buf+3,seclen);
+		n = filter->Read((char *)buf+3, seclen, 0);
 		if (n==seclen) {
 			seclen+=3;
 			//      dump("nit.dat",seclen,buf);
-			//      printf("<nit>\n");
+			      printf("<nit>\n");
 			network_id=(buf[3]<<8)|buf[4];
-			//      printf("<network id=\"%d\">\n",network_id);
+			      printf("<network id=\"%d\">\n",network_id);
 			
 			info_len=((buf[8]&0x0f)<<8)|buf[9];
 			i=10;
@@ -693,22 +715,22 @@ int scan_nit(int x) {
 				i+=2;
 				transponder.onid=(buf[i]<<8)|buf[i+1];
 				i+=2;
-				//        printf("<transponder id=\"%d\" onid=\"%d\">\n",transponder.id,transponder.onid);
+				        printf("<transponder id=\"%d\" onid=\"%d\">\n",transponder.id,transponder.onid);
 				info_len=((buf[i]&0x0f)<<8)|buf[i+1];
 				i+=2;
 				parse_descriptors(info_len,&buf[i]);
-				//        printf("</transponder>\n");
+				        printf("</transponder>\n");
 				i+=info_len;
 			}
-			//      printf("</network>\n");
-			//      printf("</nit>\n");
+			      printf("</network>\n");
+			      printf("</nit>\n");
 		} else {
 			fprintf(stderr,"Under-read bytes for NIT - wanted %d, got %d\n",seclen,n);
 		}
 	} else {
 		fprintf(stderr,"Nothing to read from fd_nit\n");
 	}
-	close(fd_nit);
+	g_Adapter->Release(filter);
 	return(0);
 }
 
@@ -742,13 +764,14 @@ void scan_pmt(int pid,int sid,int change) {
 	ufd.Events=POLLPRI;
 	if (listener.Poll(&ufd,1,10000) < 0) {
 		fprintf(stderr,"TIMEOUT reading from fd_pmt\n");
-		close(fd_pmt);
+		g_Adapter->Release(filter);
 		return;
 	}
 	
-	if (read(fd_pmt,buf,3)==3) {
+	
+	if (filter->Read((char *)buf,3, 0)==3) {
 		seclen=((buf[1] & 0x0f) << 8) | (buf[2] & 0xff);
-		n = read(fd_pmt,buf+3,seclen);
+		n = filter->Read((char *)buf+3, seclen, 0);
 		if (n==seclen) {
 			seclen+=3;
 			//      printf("<pmt>\n");
@@ -756,7 +779,7 @@ void scan_pmt(int pid,int sid,int change) {
 			//      printf("<service id=\"%d\" pmt_pid=\"%d\">\n",service_id,pid);
 			
 			if (sid != service_id) {
-				close(fd_pmt);
+				g_Adapter->Release(filter);
 				scan_pmt(pid, sid, change);
 				return;
 			}
@@ -794,7 +817,7 @@ void scan_pmt(int pid,int sid,int change) {
 		fprintf(stderr,"Nothing to read from fd_pmt\n");
 	}
 	
-	close(fd_pmt);
+	g_Adapter->Release(filter);
 }
 
  

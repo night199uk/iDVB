@@ -8,6 +8,7 @@
  */
 
 #include "IDVBDemuxTSFeed.h"
+#include "IDVBDmxDevFilter.h"
 
 using namespace Video4Mac;
 
@@ -61,7 +62,8 @@ int IDVBDemuxTSFeed::SWFilterPayload(const UInt8 *buf)
 	
 	m_PESLen += count;
 
-	return m_Callback(&buf[p], count, NULL, 0, this, DMX_OK);
+	return m_DmxFilter->TSCallback(&buf[p], count, NULL, 0, this, DMX_OK);
+//	return m_Callback(&buf[p], count, NULL, 0, this, DMX_OK);
 }
 
 
@@ -69,31 +71,29 @@ int IDVBDemuxTSFeed::SWFilterPayload(const UInt8 *buf)
 int IDVBDemuxTSFeed::Set(UInt16 pid, int ts_type,  kDVBDmxTSPES pes_type,
 						   size_t circular_buffer_size, struct timespec timeout)
 {
-	struct IDVBDemux *demux = m_Demux;
-	
 	if (pid > DMX_MAX_PID)
 		return -EINVAL; /* -EINVAL; */
 	
-	if (pthread_mutex_lock(&demux->m_Mutex))
+	if (pthread_mutex_lock(&m_Demux->m_Mutex))
 		return -EINVAL; /*-ERESTARTSYS; */ 
 	
 	if (ts_type & TS_DECODER) {
 		if (pes_type >= DMX_TS_PES_OTHER) {
-			pthread_mutex_unlock(&demux->m_Mutex);
+			pthread_mutex_unlock(&m_Demux->m_Mutex);
 			return -EINVAL; /* -EINVAL; */
 		}
 		
-		if (demux->m_PESFilter[pes_type] &&
-		    demux->m_PESFilter[pes_type] != (IDVBDemuxFeed *)this) {
-			pthread_mutex_unlock(&demux->m_Mutex);
+		if (m_Demux->m_PESFilter[pes_type] &&
+		    m_Demux->m_PESFilter[pes_type] != (IDVBDemuxFeed *)this) {
+			pthread_mutex_unlock(&m_Demux->m_Mutex);
 			return -EINVAL; /* -EINVAL; */
 		}
 		
-		demux->m_PESFilter[pes_type] = (IDVBDemuxFeed *)this;
-		demux->m_PIDs[pes_type] = pid;
+		m_Demux->m_PESFilter[pes_type] = (IDVBDemuxFeed *)this;
+		m_Demux->m_PIDs[pes_type] = pid;
 	}
-	
-//	dvb_demux_feed_add(feed);
+
+	m_Demux->FeedAdd(this);
 	
 	m_PID = pid;
 	m_BufferSize = circular_buffer_size;
@@ -107,39 +107,32 @@ int IDVBDemuxTSFeed::Set(UInt16 pid, int ts_type,  kDVBDmxTSPES pes_type,
 #else
 		m_Buffer = (UInt8 *)malloc(m_BufferSize);
 		if (!m_Buffer) {
-			pthread_mutex_unlock(&demux->m_Mutex);
+			pthread_mutex_unlock(&m_Demux->m_Mutex);
 			return -ENOMEM;
 		}
 #endif
 	}
 	
 	m_State = DMX_STATE_READY;
-	pthread_mutex_unlock(&demux->m_Mutex);
+	pthread_mutex_unlock(&m_Demux->m_Mutex);
 	
 	return 0;
 }
 
 int IDVBDemuxTSFeed::StartFiltering()
 {
-	struct IDVBDemux *demux = m_Demux;
 	int ret;
 
-	if (pthread_mutex_lock(&demux->m_Mutex))
+	if (pthread_mutex_lock(&m_Demux->m_Mutex))
 		return -EINVAL; /*-ERESTARTSYS; */ 
 	
 	if (m_State != DMX_STATE_READY || m_Type != DMX_TYPE_TS) {
-		pthread_mutex_unlock(&demux->m_Mutex);
+		pthread_mutex_unlock(&m_Demux->m_Mutex);
 		return -EINVAL;
 	}
 
-	/*
-	if (!demux->start_feed) {
-		pthread_mutex_unlock(&demux->mutex);
-		return -ENODEV;
-	}
-	*/
-	if ((ret = demux->StartFeed(this)) < 0) {
-		pthread_mutex_unlock(&demux->m_Mutex);
+	if ((ret = m_Demux->StartFeed(this)) < 0) {
+		pthread_mutex_unlock(&m_Demux->m_Mutex);
 		return ret;
 	}
 	
@@ -147,20 +140,20 @@ int IDVBDemuxTSFeed::StartFiltering()
 	m_IsFiltering = 1;
 	m_State = DMX_STATE_GO;
 	//	spin_unlock_irq(&demux->lock);
-	pthread_mutex_unlock(&demux->m_Mutex);
+	
+	pthread_mutex_unlock(&m_Demux->m_Mutex);
 	
 	return 0;
 }
 
 int IDVBDemuxTSFeed::StopFiltering()
 {
-	struct IDVBDemux *demux = m_Demux;
 	int ret;
 	
-	pthread_mutex_lock(&demux->m_Mutex);
+	pthread_mutex_lock(&m_Demux->m_Mutex);
 	
 	if (m_State < DMX_STATE_GO) {
-		pthread_mutex_unlock(&demux->m_Mutex);
+		pthread_mutex_unlock(&m_Demux->m_Mutex);
 		return -EINVAL;
 	}
 	
@@ -171,13 +164,13 @@ int IDVBDemuxTSFeed::StopFiltering()
 	}
 	*/
 	
-	ret = demux->StopFeed(this);
+	ret = m_Demux->StopFeed(this);
 	
 	//	spin_lock_irq(&demux->lock);
 	m_IsFiltering = 0;
 	m_State = DMX_STATE_ALLOCATED;
 	//	spin_unlock_irq(&demux->lock);
-	pthread_mutex_unlock(&demux->m_Mutex);
+	pthread_mutex_unlock(&m_Demux->m_Mutex);
 	
 	return ret;
 }

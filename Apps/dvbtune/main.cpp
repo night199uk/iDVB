@@ -189,7 +189,7 @@ int main (int argc, const char * argv[])
 	g_DVB->Initialize();
 	
 	g_Adapter = g_DVB->GetAdapters()[0];
-	if (g_Frontend != NULL)
+	if (g_Adapter != NULL)
 	{
 		g_Frontend = g_Adapter->GetFrontend();
 		
@@ -200,8 +200,11 @@ int main (int argc, const char * argv[])
 		tune_it(0,Frequency,srate,pol,Tone,SpectralInversion,diseqc,Modulation,HP_CodeRate,TransmissionMode,GuardInterval,Bandwidth);
 		
 		printf("<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>\n<satellite>\n");
+		fprintf(stderr, "going to scan_nit(0x40)\n\n");
 		scan_nit(0x40); /* Get initial list of transponders */
+		fprintf(stderr, "going to scan_nit(0x41)\n\n");
 		scan_nit(0x41); /* Get initial list of transponders */
+		fprintf(stderr, "going to retune ()\n\n");
 		while ((t=get_unscanned(transponders))!=NULL) {
 			free_pat_list();
 			fprintf(stderr,"Scanning %d%c %d\n",t->freq,t->pol,t->srate);

@@ -64,11 +64,7 @@ int IDVBCondition::TimedWait(unsigned int timeout)
 
 unsigned int IDVBEventListener::Poll(DVBPollDescriptor* poll_list, int num_pds, unsigned int timeout)
 {
-	int rc;
-	unsigned int ret;
 	unsigned int count;
-	struct timespec ts;
-	struct timeval tp;
 	IDVBCondition *pt;
 	bool timed_out;
 	count = 0;
@@ -80,7 +76,6 @@ unsigned int IDVBEventListener::Poll(DVBPollDescriptor* poll_list, int num_pds, 
 	pt = &m_Cond;
 	for (;;)
 	{
-
 		for (int i = 0; i < num_pds; i++)
 		{
 			if (PollPD(&poll_list[i], &m_Cond))
@@ -95,7 +90,6 @@ unsigned int IDVBEventListener::Poll(DVBPollDescriptor* poll_list, int num_pds, 
 		
 		int test = 0;
 		test = m_Cond.TimedWait(timeout);
-//		fprintf(stderr, "timedout: %d\n", ETIMEDOUT);
 		if (test == ETIMEDOUT)
 			timed_out = true;
 	}
@@ -126,5 +120,5 @@ unsigned int IDVBEventSource::Poll(IDVBCondition *Condition)
 
 void IDVBEventSource::PollWait(IDVBCondition *Condition)
 {
-	m_EventWaitQueue.Add(Condition);
+	m_WaitQueue.Add(Condition);
 }

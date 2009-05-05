@@ -18,7 +18,7 @@ namespace Video4Mac
 	public:
 		CDVBRingBuffer();
 		~CDVBRingBuffer();
-		int					Error()				{ return m_Error; };
+		inline int			Error()				{ return m_Error; };
 		void				Init(size_t len);
 		int					Empty();
 		ssize_t				Free();

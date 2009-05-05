@@ -386,7 +386,6 @@ int CDVBRingBuffer::BufferWrite(const UInt8 *src, size_t len)
 	*/
 	free = Free();
 	if (len > free) {
-		fprintf(stderr, "buffer overflow.\n");
 		CDVBLog::Log(kDVBLogDemux, "dmxdev: buffer overflow\n");
 		return -EOVERFLOW;
 	}

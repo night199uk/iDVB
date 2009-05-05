@@ -164,7 +164,7 @@ int IDVBFrontend::GetEvent(DVBFrontendEvent *event, int flags)
 
 unsigned int IDVBFrontend::Poll(IDVBCondition *Condition)
 {
-	PollWait(Condition);
+	m_EventWait.Add(Condition);
 	
 	if (m_EventW != m_EventR)
 		return (POLLIN | POLLRDNORM | POLLPRI);
