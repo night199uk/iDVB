@@ -43,7 +43,6 @@
 		AEAD0C510F9380D700289A90 /* IDVBDemuxSectionFeed.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEAD0C4F0F9380D700289A90 /* IDVBDemuxSectionFeed.cpp */; };
 		AEAD0C6D0F9381CE00289A90 /* IDVBDemuxTSFeed.h in Headers */ = {isa = PBXBuildFile; fileRef = AEAD0C6B0F9381CE00289A90 /* IDVBDemuxTSFeed.h */; };
 		AEAD0C6E0F9381CE00289A90 /* IDVBDemuxTSFeed.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEAD0C6C0F9381CE00289A90 /* IDVBDemuxTSFeed.cpp */; };
-		AEAD0CBD0F93924400289A90 /* IDVBDVR.h in Headers */ = {isa = PBXBuildFile; fileRef = AEAD0CBB0F93924400289A90 /* IDVBDVR.h */; };
 		AEAD0CDE0F93A02E00289A90 /* CDVBRingBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = AEAD0CDC0F93A02E00289A90 /* CDVBRingBuffer.h */; };
 		AEAD0CDF0F93A02E00289A90 /* CDVBRingBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEAD0CDD0F93A02E00289A90 /* CDVBRingBuffer.cpp */; };
 		AEAD0FB50F93B11200289A90 /* IDVBDemuxFeed.h in Headers */ = {isa = PBXBuildFile; fileRef = AEAD0FB30F93B11200289A90 /* IDVBDemuxFeed.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -124,8 +123,6 @@
 		AEAD0C4F0F9380D700289A90 /* IDVBDemuxSectionFeed.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IDVBDemuxSectionFeed.cpp; sourceTree = "<group>"; };
 		AEAD0C6B0F9381CE00289A90 /* IDVBDemuxTSFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDVBDemuxTSFeed.h; sourceTree = "<group>"; };
 		AEAD0C6C0F9381CE00289A90 /* IDVBDemuxTSFeed.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IDVBDemuxTSFeed.cpp; sourceTree = "<group>"; };
-		AEAD0CBB0F93924400289A90 /* IDVBDVR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDVBDVR.h; sourceTree = "<group>"; };
-		AEAD0CBC0F93924400289A90 /* IDVBDVR.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IDVBDVR.cpp; sourceTree = "<group>"; };
 		AEAD0CDC0F93A02E00289A90 /* CDVBRingBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVBRingBuffer.h; sourceTree = "<group>"; };
 		AEAD0CDD0F93A02E00289A90 /* CDVBRingBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CDVBRingBuffer.cpp; sourceTree = "<group>"; };
 		AEAD0FB30F93B11200289A90 /* IDVBDemuxFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDVBDemuxFeed.h; sourceTree = "<group>"; };
@@ -307,8 +304,6 @@
 				AE56A0960F951926005DA67B /* IDVBDmxDevFilter.h */,
 				AE56A0970F951926005DA67B /* IDVBDmxDevFilter.cpp */,
 				AEAD0BA60F93790900289A90 /* IDVBDmxPublic.h */,
-				AEAD0CBB0F93924400289A90 /* IDVBDVR.h */,
-				AEAD0CBC0F93924400289A90 /* IDVBDVR.cpp */,
 				AED994540FB0CC7C0058FFA7 /* CDVBPrimitives.h */,
 				AED994550FB0CC7C0058FFA7 /* CDVBPrimitives.cpp */,
 				AE0BE6F90F9BD031000F1FA4 /* IDVBEvent.h */,
@@ -387,7 +382,6 @@
 				AEAD0BA70F93790900289A90 /* IDVBDmxPublic.h in Headers */,
 				AEAD0C500F9380D700289A90 /* IDVBDemuxSectionFeed.h in Headers */,
 				AEAD0C6D0F9381CE00289A90 /* IDVBDemuxTSFeed.h in Headers */,
-				AEAD0CBD0F93924400289A90 /* IDVBDVR.h in Headers */,
 				AEAD0CDE0F93A02E00289A90 /* CDVBRingBuffer.h in Headers */,
 				AEAD0FB50F93B11200289A90 /* IDVBDemuxFeed.h in Headers */,
 				AE56A0980F951926005DA67B /* IDVBDmxDevFilter.h in Headers */,
