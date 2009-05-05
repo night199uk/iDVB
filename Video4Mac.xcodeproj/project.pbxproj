@@ -32,7 +32,6 @@
 		AE6F5C5B0F8FCA9E00804DB3 /* DVB.h in Headers */ = {isa = PBXBuildFile; fileRef = AE6F5C5A0F8FCA9E00804DB3 /* DVB.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AE6F5D6A0F8FE27900804DB3 /* IThread.h in Headers */ = {isa = PBXBuildFile; fileRef = AE6F5D680F8FE27900804DB3 /* IThread.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AE6F5D6B0F8FE27900804DB3 /* IThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AE6F5D690F8FE27900804DB3 /* IThread.cpp */; };
-		AE6F5F650F9027FC00804DB3 /* IEventQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = AE6F5F630F9027FC00804DB3 /* IEventQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AE6F635F0F90F6CC00804DB3 /* IFile.h in Headers */ = {isa = PBXBuildFile; fileRef = AE6F635D0F90F6CC00804DB3 /* IFile.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AE6F668B0F91574F00804DB3 /* IDVBFrontend.h in Headers */ = {isa = PBXBuildFile; fileRef = AE6F66890F91574F00804DB3 /* IDVBFrontend.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AE6F668C0F91574F00804DB3 /* IDVBFrontend.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AE6F668A0F91574F00804DB3 /* IDVBFrontend.cpp */; };
@@ -112,7 +111,6 @@
 		AE6F5C5A0F8FCA9E00804DB3 /* DVB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVB.h; sourceTree = "<group>"; };
 		AE6F5D680F8FE27900804DB3 /* IThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IThread.h; sourceTree = "<group>"; };
 		AE6F5D690F8FE27900804DB3 /* IThread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IThread.cpp; sourceTree = "<group>"; };
-		AE6F5F630F9027FC00804DB3 /* IEventQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IEventQueue.h; sourceTree = "<group>"; };
 		AE6F635D0F90F6CC00804DB3 /* IFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFile.h; sourceTree = "<group>"; };
 		AE6F635E0F90F6CC00804DB3 /* IFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IFile.cpp; sourceTree = "<group>"; };
 		AE6F66890F91574F00804DB3 /* IDVBFrontend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IDVBFrontend.h; path = ../USB/IDVBFrontend.h; sourceTree = "<group>"; };
@@ -314,7 +312,6 @@
 				AE6F635E0F90F6CC00804DB3 /* IFile.cpp */,
 				AE6F5D680F8FE27900804DB3 /* IThread.h */,
 				AE6F5D690F8FE27900804DB3 /* IThread.cpp */,
-				AE6F5F630F9027FC00804DB3 /* IEventQueue.h */,
 				AE1DBB9B0F923EDD0054F8DA /* CDVBLog.h */,
 				AE1DBB9C0F923EDD0054F8DA /* CDVBLog.cpp */,
 			);
@@ -373,7 +370,6 @@
 				AE6F54FD0F8EB97E00804DB3 /* IDVBTuner.h in Headers */,
 				AE6F5C5B0F8FCA9E00804DB3 /* DVB.h in Headers */,
 				AE6F5D6A0F8FE27900804DB3 /* IThread.h in Headers */,
-				AE6F5F650F9027FC00804DB3 /* IEventQueue.h in Headers */,
 				AE6F635F0F90F6CC00804DB3 /* IFile.h in Headers */,
 				AE6F668B0F91574F00804DB3 /* IDVBFrontend.h in Headers */,
 				AE1DBB9D0F923EDD0054F8DA /* CDVBLog.h in Headers */,
