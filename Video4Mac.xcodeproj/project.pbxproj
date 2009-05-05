@@ -71,8 +71,8 @@
 		AED7EC670F769FC300FCCA2F /* dvbtune.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AED7EC600F769FAC00FCCA2F /* dvbtune.cpp */; };
 		AED7EC690F769FC300FCCA2F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AED7EC620F769FAC00FCCA2F /* main.cpp */; };
 		AED7EC7F0F76A43200FCCA2F /* printInterpretedError.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AED7EC7E0F76A43200FCCA2F /* printInterpretedError.cpp */; };
-		AED994560FB0CC7C0058FFA7 /* IDVBPrimitives.h in Headers */ = {isa = PBXBuildFile; fileRef = AED994540FB0CC7C0058FFA7 /* IDVBPrimitives.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AED994570FB0CC7C0058FFA7 /* IDVBPrimitives.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AED994550FB0CC7C0058FFA7 /* IDVBPrimitives.cpp */; };
+		AED994560FB0CC7C0058FFA7 /* CDVBPrimitives.h in Headers */ = {isa = PBXBuildFile; fileRef = AED994540FB0CC7C0058FFA7 /* CDVBPrimitives.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AED994570FB0CC7C0058FFA7 /* CDVBPrimitives.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AED994550FB0CC7C0058FFA7 /* CDVBPrimitives.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -155,8 +155,8 @@
 		AED7EC620F769FAC00FCCA2F /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		AED7EC7D0F76A43200FCCA2F /* printInterpretedError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = printInterpretedError.h; sourceTree = "<group>"; };
 		AED7EC7E0F76A43200FCCA2F /* printInterpretedError.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = printInterpretedError.cpp; sourceTree = "<group>"; };
-		AED994540FB0CC7C0058FFA7 /* IDVBPrimitives.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDVBPrimitives.h; sourceTree = "<group>"; };
-		AED994550FB0CC7C0058FFA7 /* IDVBPrimitives.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IDVBPrimitives.cpp; sourceTree = "<group>"; };
+		AED994540FB0CC7C0058FFA7 /* CDVBPrimitives.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVBPrimitives.h; sourceTree = "<group>"; };
+		AED994550FB0CC7C0058FFA7 /* CDVBPrimitives.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CDVBPrimitives.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -309,8 +309,8 @@
 				AEAD0BA60F93790900289A90 /* IDVBDmxPublic.h */,
 				AEAD0CBB0F93924400289A90 /* IDVBDVR.h */,
 				AEAD0CBC0F93924400289A90 /* IDVBDVR.cpp */,
-				AED994540FB0CC7C0058FFA7 /* IDVBPrimitives.h */,
-				AED994550FB0CC7C0058FFA7 /* IDVBPrimitives.cpp */,
+				AED994540FB0CC7C0058FFA7 /* CDVBPrimitives.h */,
+				AED994550FB0CC7C0058FFA7 /* CDVBPrimitives.cpp */,
 				AE0BE6F90F9BD031000F1FA4 /* IDVBEvent.h */,
 				AE0BE6FA0F9BD031000F1FA4 /* IDVBEvent.cpp */,
 				AEAD0CDC0F93A02E00289A90 /* CDVBRingBuffer.h */,
@@ -392,7 +392,7 @@
 				AEAD0FB50F93B11200289A90 /* IDVBDemuxFeed.h in Headers */,
 				AE56A0980F951926005DA67B /* IDVBDmxDevFilter.h in Headers */,
 				AE0BE6FB0F9BD031000F1FA4 /* IDVBEvent.h in Headers */,
-				AED994560FB0CC7C0058FFA7 /* IDVBPrimitives.h in Headers */,
+				AED994560FB0CC7C0058FFA7 /* CDVBPrimitives.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,7 +495,7 @@
 				AEAD0FB60F93B11200289A90 /* IDVBDemuxFeed.cpp in Sources */,
 				AE56A0990F951926005DA67B /* IDVBDmxDevFilter.cpp in Sources */,
 				AE0BE6FC0F9BD031000F1FA4 /* IDVBEvent.cpp in Sources */,
-				AED994570FB0CC7C0058FFA7 /* IDVBPrimitives.cpp in Sources */,
+				AED994570FB0CC7C0058FFA7 /* CDVBPrimitives.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

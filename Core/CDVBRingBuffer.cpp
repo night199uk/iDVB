@@ -43,7 +43,6 @@ CDVBRingBuffer::~CDVBRingBuffer()
 	
 }
 
-
 void CDVBRingBuffer::Init(size_t len)
 {
 	m_pRead=m_pWrite=0;

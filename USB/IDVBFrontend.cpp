@@ -145,7 +145,7 @@ int IDVBFrontend::GetEvent(DVBFrontendEvent *event, int flags)
 		if (flags & O_NONBLOCK)
 			return -EWOULDBLOCK;
 
-		IDVBCondition Cond;
+		CDVBCondition Cond;
 		Poll(&Cond);
 		Cond.Wait();
 		
@@ -162,7 +162,7 @@ int IDVBFrontend::GetEvent(DVBFrontendEvent *event, int flags)
 	return 0;
 };
 
-unsigned int IDVBFrontend::Poll(IDVBCondition *Condition)
+unsigned int IDVBFrontend::Poll(CDVBCondition *Condition)
 {
 	m_EventWait.Add(Condition);
 	
@@ -399,27 +399,9 @@ int IDVBFrontend::SWZigZagAutoTune(int check_wrapped)
         return 1;
     }
 	
-	/* these are just for debugging the tuner */
-//	m_Demod->ReadSignalStrength(&signal);
-
-		/* these are just for debugging the tuner */
-//	CDVBLog::Log(kDVBLogFrontend, "%s: drift:%i inversion:%i auto_step:%i auto_sub_step:%i started_auto_step:%i signal:%i\n",
-//				 __func__, m_LNBDrift, m_Inversion,
-//				 m_AutoStep, m_AutoSubStep, m_StartedAutoStep, signal);
-	
-/*	std::ostringstream Status;
-	Status << "[";
-	if (m_Status & FE_HAS_SIGNAL)  Status  << "SIG ";
-	if (m_Status & FE_HAS_CARRIER) Status  << "CARR ";
-	if (m_Status & FE_HAS_VITERBI) Status  << "VIT ";
-	if (m_Status & FE_HAS_SYNC)    Status  << "SYNC ";
-	if (m_Status & FE_HAS_LOCK)    Status  << "LOCK ";
-	if (m_Status & FE_TIMEDOUT)    Status  << "TIMEOUT ";
-	if (m_Status & FE_REINIT)      Status  << "REINIT ";
-	Status << "]\n";
-
-	CDVBLog::Log(kDVBLogFrontend, Status.str().c_str());
-*/	
+	CDVBLog::Log(kDVBLogFrontend, "%s: drift:%i inversion:%i auto_step:%i auto_sub_step:%i started_auto_step:%i signal:%i\n",
+				 __func__, m_LNBDrift, m_Inversion,
+				 m_AutoStep, m_AutoSubStep, m_StartedAutoStep, signal);
 	
     /* set the frontend itself */
     m_Parameters.Frequency += m_LNBDrift;
@@ -560,7 +542,7 @@ void IDVBFrontend::Process()
 {
 	kFEStatus s;
 	kFEAlgo algo;
-	IDVBCondition cond;
+	CDVBCondition cond;
 	DVBFrontendParameters *params;
 
 	while (1) {

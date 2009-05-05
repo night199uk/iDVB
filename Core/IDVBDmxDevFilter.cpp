@@ -615,7 +615,7 @@ int IDVBDmxDevFilter::IOCtl(unsigned int cmd, void *parg)
 	return ret;
 }
 
-unsigned int IDVBDmxDevFilter::Poll(IDVBCondition *Condition)
+unsigned int IDVBDmxDevFilter::Poll(CDVBCondition *Condition)
 {
 	unsigned int mask = 0;
 

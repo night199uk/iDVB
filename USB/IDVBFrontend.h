@@ -270,7 +270,7 @@ namespace Video4Mac
 
 		virtual int		Initialize();
 		
-		unsigned int	Poll(IDVBCondition *Condition);
+		unsigned int	Poll(CDVBCondition *Condition);
 		virtual int		GetInfo(DVBFrontendInfo *info);
 		int				SetFrontend(DVBFrontendParameters *params);
 		int				SetVoltage(kFESECVoltage params);
@@ -311,8 +311,8 @@ namespace Video4Mac
 		int				CheckParameters(DVBFrontendParameters *parms);
 
 		// Tuning state variables
-		IDVBWaitQueue	m_Wait;
-		IDVBSemaphore	m_Sem;
+		CDVBWaitQueue	m_Wait;
+		CDVBSemaphore	m_Sem;
 		DVBFrontendParameters m_Parameters;
 		unsigned long	m_TuneModeFlags;
 		int				m_Tone;
@@ -335,8 +335,8 @@ namespace Video4Mac
 		unsigned int	m_StepSize;
 		
 		// Events API
-		IDVBMutex		m_EventMutex;
-		IDVBWaitQueue	m_EventWait;
+		CDVBMutex		m_EventMutex;
+		CDVBWaitQueue	m_EventWait;
 		DVBFrontendEvent*m_Events;
 		int				m_EventW;
 		int				m_EventR;

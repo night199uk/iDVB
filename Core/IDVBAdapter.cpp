@@ -102,15 +102,11 @@ int IDVBAdapter::Release(IDVBDmxDevFilter *dmxdevfilter)
 
 ssize_t IDVBAdapter::Read(char /* __user */ *buf, size_t count, long long *ppos)
 {
-	//	struct dmxdev_filter *dmxdevfilter = file->private_data;
 	int ret;
 	
 	if (pthread_mutex_lock(&m_Mutex))
 		return -EINTR;
 	
-	/*	if (dmxdevfilter->type == DMXDEV_TYPE_SEC)
-	 ret = dvb_dmxdev_read_sec(dmxdevfilter, file, buf, count, ppos);
-	 else*/
 	ret = m_Buffer->BufferRead(/*file->f_flags & O_NONBLOCK*/ 0,
 							   buf, count, ppos);
 	

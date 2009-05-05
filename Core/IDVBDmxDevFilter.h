@@ -82,7 +82,7 @@ namespace Video4Mac
 		void			Timeout(unsigned long data);
 		void			Timer();
 
-		unsigned int	Poll(IDVBCondition *Condition);
+		unsigned int	Poll(CDVBCondition *Condition);
 		int				FeedStop();
 		int				FeedStart();
 		int				FeedRestart();
@@ -106,7 +106,7 @@ namespace Video4Mac
 		kDVBDmxDevType			m_Type;
 		kDVBDmxDevState			m_State;
 		CDVBRingBuffer*			m_Buffer;
-		IDVBWaitQueue			m_WaitQueue;
+		CDVBWaitQueue			m_WaitQueue;
 		pthread_mutex_t			m_Mutex;
 		
 		/* only for sections */

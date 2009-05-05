@@ -36,9 +36,9 @@ namespace Video4Mac
 		IDVBEventListener();
 		unsigned int			Poll(DVBPollDescriptor* poll_list, int num_pds, unsigned int timeout);
 	private:
-		inline unsigned int		PollPD(DVBPollDescriptor* pollpd, IDVBCondition *cond);
+		inline unsigned int		PollPD(DVBPollDescriptor* pollpd, CDVBCondition *cond);
 		
-		IDVBCondition m_Cond;
+		CDVBCondition m_Cond;
 	};
 	
 	class IDVBEventSource
@@ -49,13 +49,13 @@ namespace Video4Mac
 //		virtual int				WaitTimeout();
 //		virtual int				Signal();
 		
-		virtual unsigned int	Poll(IDVBCondition *Condition);
+		virtual unsigned int	Poll(CDVBCondition *Condition);
 
 	protected:
-		void					PollWait(IDVBCondition *Condition);
+		void					PollWait(CDVBCondition *Condition);
 //		virtual int				Register();
 //		virtual int				Unregister();
-		IDVBWaitQueue			m_WaitQueue;
+		CDVBWaitQueue			m_WaitQueue;
 		
 	private:
 	};
